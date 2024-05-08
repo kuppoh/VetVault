@@ -1,0 +1,124 @@
+body{
+    background-color:#DBA979;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* header and nav */
+header{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    color:white;
+    margin: 5px;
+    padding: 10px;
+    background-color: #AFD198;
+    border-radius: 20px;
+}
+
+#slogan{
+    align-self: center;
+    justify-self: center;
+    font-size: 1.2em;
+}
+
+#logo{
+    align-self: center;
+    justify-self: center;
+    background: url("homepage.html");
+    border-radius: 20px;
+}
+#profileBtn{ 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    align-self: center;
+    justify-self: center;
+    background-color: white;
+    width: 300px;
+    color: #AFD198;
+    border: 1px solid #AFD198;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2em;
+}
+#profileBtn:hover{
+    border: 1px solid white;
+    background-color: #AFD198;
+    color: white;
+}
+
+nav{
+    display: grid;
+    justify-content: middle;
+    margin: 5px;
+    text-align: center;
+    grid-auto-flow: column;
+    grid-template-columns: 33%;
+    grid-column-gap: 10px;
+    padding: 10px;
+    background-color: #E8EFCF;
+    border-radius: 20px;
+}
+
+nav button{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color:white;
+    color: #AFD198;
+    border: 1px solid #AFD198;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 2em;
+}
+
+nav button:hover{
+    border: 1px solid white;
+    background-color: #AFD198;
+    color: white;
+}
+
+#profile{
+    width: 100% - 10px;
+    height: fit-content;
+    padding: 10px;
+    margin: 5px;
+    background-color: #ECCA9C;
+    border: 1.5px solid black;
+    border-radius: 20px;
+}
+
+div h1{
+    text-align: center;
+    color: Black;
+    font-size: 4em;
+    margin: 25px;
+}
+
+div img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}
+
+#information{
+    background-color: #AFD198;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid black;
+    font-size: 15px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    color: Black;
+    font-size: 1.5em;
+    margin: 25px;
+}
+#information p{
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    font-size: 20px;
+}
