@@ -1,3 +1,4 @@
+const { name } = require('ejs');
 const { promiseUserPool } = require('../config/database'); // A connection pool for the MySQL database
 const passport = require("../middleware/passport");
 const bycrypt = require("bcrypt"); // Library for hashing passwords
@@ -10,7 +11,7 @@ let authController = {
   },
 
   register: (req, res) => {
-    res.render("auth/register", { role: 'user', name: '' });
+    res.render("auth/register", { role: 'user', name: 'Guest'});
   },
 
   loginSubmit: passport.authenticate("local", {
