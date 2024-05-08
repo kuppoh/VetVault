@@ -10,7 +10,7 @@ let authController = {
   },
 
   register: (req, res) => {
-    res.render("auth/register", { role: 'user' });
+    res.render("auth/register", { role: 'user', name: '' });
   },
 
   loginSubmit: passport.authenticate("local", {
