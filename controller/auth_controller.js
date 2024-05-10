@@ -7,7 +7,7 @@ const saltRounds = 10; // Number of rounds to use for the salt, salt is used to 
 
 let authController = {
   login: (req, res) => {
-    res.render("auth/login", { role: 'user', name: 'Guest'});
+    res.render("auth/login", { role: 'user', name: 'Guest', showNavbar: true});
   },
 
   register: (req, res) => {

@@ -19,12 +19,12 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
       if (results.length > 0) {
         const role = results[0].role;
         // Render the dashboard view with user and session information
-        res.render("layout", {
+        res.render("user/homepage", {
           user: req.user,
           sessionStore: req.sessionStore,
           role: role,
-          body: "",
-          name: req.user.name
+          name: req.user.name,
+          showNavbar: false
         });
       } else {
         // Handle the case where no results are returned
