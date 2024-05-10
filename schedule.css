@@ -63,6 +63,13 @@ nav{
     border-radius: 20px;
 }
 
+header a{
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+
 nav button{
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color:white;
@@ -71,6 +78,7 @@ nav button{
     border-radius: 10px;
     padding: 10px;
     font-size: 2em;
+    width: 100%;
 }
 
 nav button:hover{
@@ -80,10 +88,13 @@ nav button:hover{
 }
 
 #scheduleBlock{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 100% - 10px;
-    height: 65.5vh; /* to be changed to fit-content when calendar is implemented*/
-    padding: 10px;
+    height: fit-content;
+    padding: 20px;
     margin: 5px;
     background-color: #E1F0DA;
     border: 1.5px solid black;
@@ -94,4 +105,10 @@ nav button:hover{
     text-align: center;
     font-size: 3em;
     color: Black;
+}
+
+#scheduleBlock iframe{
+    background-color: #AFD198;
+    padding: 10px;
+    border-radius: 20px;   
 }
