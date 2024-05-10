@@ -11,3 +11,5 @@
 TODO:
 ------
 Creating database routes, such as a full db reset for testing purposes
+
+Implement pet_profile_views and fetch pet info from database
