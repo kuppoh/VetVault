@@ -62,6 +62,13 @@ nav{
     border-radius: 20px;
 }
 
+header a{
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+
 nav button{
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color:white;
@@ -70,6 +77,7 @@ nav button{
     border-radius: 10px;
     padding: 10px;
     font-size: 2em;
+    width: 100%;
 }
 
 nav button:hover{
@@ -87,11 +95,14 @@ nav button:hover{
 }
 
 #information{
+    display: flex;
+    flex-direction: column;
     height: fit-content;
     background-color: #E1F0DA;
+    align-items: center;
     border-radius: 20px;
     margin: 5px;
-    padding: 30px;
+    padding: 100px;
     padding-top: 5px;
 }
 
@@ -109,4 +120,10 @@ nav button:hover{
     padding: 10px;
     font-size: 1.2em;
     margin: 5px;
+}
+
+#submit:hover{
+    border: 1px solid white;
+    background-color: #AFD198;
+    color: white;
 }

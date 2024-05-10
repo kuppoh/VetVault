@@ -3,32 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VetVault Homepage</title>
+    <title>Create Profile</title>
     <link rel="stylesheet" href="createProfile.css">
 </head>
 <body>
     <header>
     <p1 id="slogan">Securing Your Pet's Wellness Journey!</p1>
     <img src="VetVault.png" alt="VetVault Logo" id="logo">
-    <button id="profileBtn">My Profile</button>
+    <a href="/login"><button id="profileBtn">Log in</button></a>
     </header>
     <nav>
-        <button>Prescriptions</button>
-        <button>My Pets</button>
-        <button>Schedule</button>
+        <a href="/prescriptions"><button>Prescriptions</button></a>
+        <a href="/petList"><button>My Pets</button></a>
+        <a href="/schedule"><button>Schedule</button></a>
     </nav>
     <form id="information">   
         <h1>Create Profile</h1>
-        <p>First Name: </p> <input type="text" id="fname" name="fname" placeholder="First Name">
-        <p>Last Name: </p> <input type="text" id="lname" name="lname" placeholder="Last Name">
-        <p>Preferred Name: </p> <input type="text" id="pname" name="pname" placeholder="Preferred Name">
+        <p>Name: </p> <input type="text" id="name" name="name" placeholder="Full Name">
         <p>Email: </p> <input type="email" id="email" name="email" placeholder="Email">
         <p>Phone Number: </p> <input type="tel" id="phone" name="phone" placeholder="Phone Number">
-        <p>Pet Owner/Veterinarian?</p>
-        <input type="radio" id="POwner" name="POwner" value="Pet Owner">
-        <label for="POwner">Pet Owner</label>
-        <input type="radio" id="vet" name="vet" value="veterinarian">
-        <label for="vet">Veterinarian</label><br><br>
+        <p>Password: </p> <input type="text" id="pw" name="pw" placeholder="Password">
+        <br><br>
         <input type="submit" id="submit">
     </div>
 </body> 
