@@ -6,6 +6,7 @@
 - Successfully fixed registration
 - Added password encryption
 - Added database reset route (for testing)
+- Register and Login views added
 
 TODO:
 ------

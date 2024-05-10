@@ -98,7 +98,24 @@ color: white;
       font-size: 1.2em;
       margin: 5px;
 }
+
 #password{
+      border: 1px solid #AFD198;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1.2em;
+      margin: 5px;
+}
+
+#name{
+      border: 1px solid #AFD198;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1.2em;
+      margin: 5px;
+}
+
+#phone{
       border: 1px solid #AFD198;
       border-radius: 10px;
       padding: 10px;
@@ -125,4 +142,31 @@ form h1{
 #submit:hover{
       background-color: #E8EFCF;
       color: white;
+}
+
+#information h1{
+      text-align: center;
+      color: Black;
+      font-size: 4em;
+      margin: 25px;
+}
+
+#information{
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+      background-color: #E1F0DA;
+      align-items: center;
+      border-radius: 20px;
+      margin: 5px;
+      padding: 100px;
+      padding-top: 5px;
+}
+
+#information p{
+      font-size: 30px;
+}
+
+#information label{
+      font-size: 1.2em;
 }
