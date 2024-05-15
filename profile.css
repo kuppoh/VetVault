@@ -61,14 +61,6 @@ nav{
     background-color: #AFD198;
     border-radius: 20px;
 }
-/* overwrite the current nav button ruleset for all stylesheets */
-
-header a{
-    display: flex;
-    text-decoration: none;
-    justify-content: center;
-    align-items: center;
-}
 
 nav button{
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -78,7 +70,6 @@ nav button{
     border-radius: 10px;
     padding: 10px;
     font-size: 2em;
-    width: 100%;
 }
 
 nav button:hover{

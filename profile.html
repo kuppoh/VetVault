@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Profile</title>
+    <title>VetVault Homepage</title>
     <link rel="stylesheet" href="profile.css">
 </head>
 <body>
     <header>
     <p1 id="slogan">Securing Your Pet's Wellness Journey!</p1>
     <img src="VetVault.png" alt="VetVault Logo" id="logo">
-    <a href="/userProfile"><button id="profileBtn">My Profile</button></a>
+    <button id="profileBtn">My Profile</button>
     </header>
     <nav>
-        <!-- overwrite current button tags with these -->
-        <a href="/prescriptions"><button>Prescriptions</button></a>
-        <a href="/petList"><button>My Pets</button></a>
-        <a href="/schedule"><button>Schedule</button></a>
+        <button>Prescriptions</button>
+        <button>My Pets</button>
+        <button>Schedule</button>
     </nav>
     <div id="profile">
         <h1>Jayzed</h1>
@@ -34,6 +33,7 @@
             <p>Medications: <%- pet.meds %></p>
             <!-- <button>Edit</button> -->
         </div>
+
     </div>
 </body> 
 </html>
