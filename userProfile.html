@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Profile</title>
+    <link rel="stylesheet" href="userProfile.css">
+</head>
+<body>
+    <header>
+    <p1 id="slogan">Securing Your Pet's Wellness Journey!</p1>
+    <img src="VetVault.png" alt="VetVault Logo" id="logo">
+    <a href="/userProfile"><button id="profileBtn">My Profile</button></a>
+    </header>
+    <nav>
+        <a href="/prescriptions"><button>Prescriptions</button></a>
+        <a href="/petList"><button>My Pets</button></a>
+        <a href="/schedule"><button>Schedule</button></a>
+    </nav>
+    <div id="userProfile">
+        <h1>My Profile</h1>
+        <div id="userInfo">        
+            <p>Name: <%- user.name %> </p>
+            <p>Email: <%- user.email %></p>
+            <p>Phone Number: <%- user.phoneNumber %></p>
+        </div>
+    </div>
+</body> 
+</html>
