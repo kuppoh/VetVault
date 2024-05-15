@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { promiseUserPool } = require('../config/database');
 const bcrypt = require('bcrypt');
+const databaseController = require('../controller/database_controller');
 router.get('/createdb', async (req, res) => {
     try {
         let sql = 'CREATE DATABASE IF NOT EXISTS nodemysql'; // Use IF NOT EXISTS to prevent error if it already exists
@@ -34,6 +35,7 @@ router.get('/users', async (req, res) => {
         res.status(500).send('Error getting users');
     }
 });
+
 
 
 // This is to hard reset the database for testing purposes, DO NOT use in production
