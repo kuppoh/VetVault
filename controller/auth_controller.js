@@ -11,7 +11,7 @@ let authController = {
   },
 
   register: (req, res) => {
-    res.render("auth/register", { role: 'user', name: 'Guest'});
+    res.render("auth/register", { role: 'user', name: 'Guest', showNavbar: true});
   },
 
   loginSubmit: passport.authenticate("local", {

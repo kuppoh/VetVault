@@ -245,3 +245,58 @@ form h1{
       background-color: #6196A6;
       color: white;
   }
+
+  #profile_pet{
+      width: 100% - 10px;
+      height: fit-content;
+      padding: 10px;
+      margin: 5px;
+      background-color: #E1F0DA;
+      border: 1.5px solid black;
+      border-radius: 20px;
+  }
+  
+#profile_pet>h1{
+      text-align: center;
+      color: Black;
+      font-size: 4em;
+      margin: 25px;
+}
+  
+#pet_img{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 20px;
+}
+#information_pet{
+      background-color: #AFD198;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid black;
+      font-size: 15px;
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      color: Black;
+      font-size: 1.5em;
+      margin: 25px;
+}
+#information_pet p{
+      align-self: center;
+      justify-self: center;
+      text-align: center;
+      font-size: 20px;
+}
+
+#petList{
+      justify-content: center;
+      width: 100% - 10px;
+      height: 65.5vh;
+      padding: 10px;
+      margin: 5px;
+      background-color: #E1F0DA;
+      border: 1.5px solid black;
+      border-radius: 20px;
+}

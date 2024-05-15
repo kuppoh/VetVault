@@ -1,6 +1,7 @@
 const express = require('express');
 const databaseRoute = require('./routes/databaseRoute');
 const indexRoute = require('./routes/indexRoute');
+const petRoute = require('./routes/petRoute');
 const path = require("path");
 const ejsLayouts = require("express-ejs-layouts");
 const session = require("express-session");
@@ -38,6 +39,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(indexRoute);
 app.use(databaseRoute);
+app.use(petRoute);
 // Set the view engine to EJS
 app.set("view engine", "ejs");
 

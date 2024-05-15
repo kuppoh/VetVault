@@ -7,9 +7,14 @@
     "express-ejs-layouts": "^2.5.1",
     "express-passport": "^0.1.0",
     "express-session": "^1.18.0",
+    "mocha": "^10.4.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.7",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "supertest": "^7.0.0"
   }
 }

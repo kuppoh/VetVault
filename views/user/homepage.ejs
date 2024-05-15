@@ -5,7 +5,9 @@
 </div>
 <div id="navigation">
   <a href="/prescriptions"><button id="prescriptions">Prescriptions</button></a>
-  <a href="/petList"><button id="myPets">My Pets</button></a>
+  <form method="GET" action=<%="/petIndex/" + userID %>>
+    <a href="/petIndex"><button id="myPets">My Pets</button></a>
+  </form>
   <a href="/schedule"><button id="schedule">Schedule</button></a>
   <a href="/createProfile"><button id="myProfile">Edit Profile</button></a>
 </div>
