@@ -40,6 +40,20 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
     });
 });
 
+
+router.get("/myProfile", ensureAuthenticated, async (req, res) => {
+  // console.log("Logged in user ID:", req.user.id)
+  const [rows] = await promiseUserPool.query("SELECT * FROM users WHERE id = ?", [req.user.id])
+  if (rows.length > 0) {
+      res.render("user/myProfile", 
+      {  
+        user: rows[0], 
+        showNavbar: true 
+      });
+  }
+
+});
+
 // Route to render the admin page for admin users only
 router.get("/admin", ensureAuthenticated, isAdmin, (req, res) => {
   res.render("layout_admin", {
