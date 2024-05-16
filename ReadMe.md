@@ -24,7 +24,7 @@ Views Added:
 
 Views left:
 - schedule
-- edit pet page
+- edit pet page **(WIP)**
 - edit button
 - input button
 - logout button

@@ -27,10 +27,9 @@ const databaseController = {
         };
         try {
             await userPromisePool.query('UPDATE PET SET ? WHERE id = ?', [pet, req.params.id]);
-            res.redirect('/pets');
+            res.redirect('/pets/edit_pet');
         } catch (error) {
             console.error(error);
-            res.redirect('/pets');
         }
     },
     deletePet: async (req, res) => {
