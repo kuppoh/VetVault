@@ -51,7 +51,10 @@ router.get("/myProfile", ensureAuthenticated, async (req, res) => {
         showNavbar: true 
       });
   }
+});
 
+router.get("/schedule", ensureAuthenticated, (req, res) => {
+  res.render("user/schedule", { showNavbar: true });
 });
 
 // Route to render the admin page for admin users only

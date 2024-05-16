@@ -21,9 +21,9 @@ Views Added:
 - pets index
 - pet profile
 - user profile
+- schedule
 
 Views left:
-- schedule
 - edit pet page **(WIP)**
 - edit button
 - input button
