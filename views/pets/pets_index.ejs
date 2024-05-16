@@ -4,6 +4,10 @@
     
     <!-- ^ for admin view -->
 
-    <%- pet %>
-    
+
+    <% pets.forEach(function(pet) { %>
+        <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
+            <a href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
+        </form>
+    <% }); %>
 </div>

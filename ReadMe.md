@@ -7,7 +7,12 @@
 - Added password encryption
 - Added database reset route (for testing)
 - Register and Login views added
-  
+
+### Week 3
+- Added pets view
+- Added user views (homepage)
+- database controller functionalities
+
 TODO:
 ------
 Creating database routes, such as a full db reset for testing purposes

@@ -1,17 +1,18 @@
 <div id="profile_pet">
-    <h1>Jayzed</h1>
+    <h1><%- pet.Name %></h1>
     <img id="pet_img" src="/images/jayzed" alt=" Doggo1 Profile Picture">
     <div id="information_pet">        
-        <p>Name: <%- pet.name %> </p>
-        <p>Gender: <%- pet.gender %></p>
-        <p>Species: <%- pet.type %></p>
-        <p>Breed: <%- pet.breed %></p>
-        <p>Weight: <%- pet.weight %></p>
-        <p>Birthdate: <%- pet.birthdate %></p>
-        <p>description: <%- pet.description %></p>
-        <p>Owned By: <button><%- pet.owner %></button></p>
-        <p>Conditions: <%- pet.conds%></p>
-        <p>Medications: <%- pet.meds %></p>
+        <p>Name: <%- pet.Name %> </p>
+        <p>Gender: <%- pet.Gender %></p>
+        <p>Species: <%- pet.Specie %></p>
+        <p>Breed: <%- pet.Breed %></p>
+        <p>Weight: <%- weight %></p>
+        <p>Birthdate: <%- pet.BirthDate %></p>
+        <p>description: <%- pet.Description %></p>
+        <p>Owned By: <button><%- owner %></button></p>
+        <p>Conditions: <%- cons %> Symptom: <%- symptoms %> Description: <%- consDesc %> </p>
+        <p>Medications: <%- med %> Description: <%- medDesc %></p>
+        
         <!-- <button>Edit</button> -->
     </div>
 </div>

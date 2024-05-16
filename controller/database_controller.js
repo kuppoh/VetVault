@@ -44,18 +44,60 @@ const databaseController = {
     },
     getPetbyID: async (req, res) => {
         try {
-            const [rows] = await userPromisePool.query('SELECT * FROM PET WHERE id = ?', req.params.id);
-            res.json(rows);
+            const petId = req.params.id;
+            const [petRows] = await promiseUserPool.query('SELECT * FROM PET WHERE PetID = ?', petId);
+            const [medRows] = await promiseUserPool.query('SELECT * FROM PET_MED_INT JOIN PET ON PET_MED_INT.PetID = PET.PetID JOIN MEDICATION ON PET_MED_INT.MedID = MEDICATION.MedID WHERE PET.PetID = ?', petId);
+            const [conRows] = await promiseUserPool.query('SELECT * FROM PET_CON_INT JOIN PET ON PET_CON_INT.PetID = PET.PetID JOIN `CONDITIONS` ON PET_CON_INT.ConditionID = `CONDITIONS`.ConditionID WHERE PET.PetID = ?', petId);
+            const [weightRows] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK WHERE PetID = ?', petId);
+            const [ownerRows] = await promiseUserPool.query('SELECT * FROM OWNERSHIP_INT JOIN users ON OWNERSHIP_INT.UserID = users.ID WHERE OWNERSHIP_INT.PetID = ?', petId);
+
+            console.log(petRows);
+            console.log(medRows);
+            console.log(conRows);
+            console.log(weightRows);
+            console.log(ownerRows);
+    
+            if (petRows.length > 0) {
+                const pet = petRows[0];
+                
+                pet.medications = medRows;
+                const med = medRows[0]['MedName'];
+                const medDesc = medRows[0]['Description'];
+                
+                pet.conditions = conRows;
+                const cons = conRows[0]['BodyPart'];
+                const symptoms = conRows[0]['Symptom'];
+                const consDesc = conRows[0]['Description'];
+                
+                pet.weightChecks = weightRows;
+                const weight = weightRows[0]['Weight'];
+    
+                const owner = ownerRows[0]['name'];
+                res.render('pets/pet_profile', 
+                {
+                    pet: pet, 
+                    med: med,
+                    medDesc: medDesc, 
+                    cons: cons, 
+                    symptoms: symptoms,
+                    consDesc: consDesc,
+                    weight: weight, 
+                    owner: owner,
+                    showNavbar: true}
+                );
+            } else {
+                res.status(404).send('Pet not found');
+            }
         } catch (error) {
             console.error(error);
             res.status(500).send('Error getting pet');
-        }},
+        }
+    },
     getPetsbyUserID: async (req, res) => {
             try {
-                const [rows] = await promiseUserPool.query('SELECT PET.Name FROM OWNERSHIP_INT JOIN PET ON OWNERSHIP_INT.PetID = PET.PetID WHERE OWNERSHIP_INT.UserID = ? ', [req.params.id]);
+                const [rows] = await promiseUserPool.query('SELECT * FROM OWNERSHIP_INT JOIN PET ON OWNERSHIP_INT.PetID = PET.PetID WHERE OWNERSHIP_INT.UserID = ? ', [req.params.id]);
                 if (rows.length > 0) {
-                    const pet = rows[0]['Name'];
-                    res.render("pets/pets_index", {pet: pet, showNavbar: true});
+                    res.render("pets/pets_index", {pets: rows, showNavbar: true});
                 } else {
                     res.status(404).send('No pets found for this user');
                 }
