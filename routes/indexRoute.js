@@ -57,6 +57,9 @@ router.get("/schedule", ensureAuthenticated, (req, res) => {
   res.render("user/schedule", { showNavbar: true });
 });
 
+router.get("/prescriptions/", ensureAuthenticated, (req, res) => {
+  res.render("user/prescriptions", { showNavbar: true });
+});
 // Route to render the admin page for admin users only
 router.get("/admin", ensureAuthenticated, isAdmin, (req, res) => {
   res.render("layout_admin", {
