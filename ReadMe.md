@@ -22,12 +22,12 @@ Views Added:
 - pet profile
 - user profile
 - schedule
+- logout button
 
 Views left:
 - edit pet page **(WIP)** (be able to edit what is on database and reflect that)
 - edit button
 - input button
-- logout button
 - prescriptions => view is implemented (however, the database is not implemented) **(WIP)**
 
 TODO:
