@@ -83,7 +83,9 @@ const databaseController = {
                     consDesc: consDesc,
                     weight: weight, 
                     owner: owner,
-                    showNavbar: true}
+                    showNavbar: true,
+
+                }
                 );
             } else {
                 res.status(404).send('Pet not found');

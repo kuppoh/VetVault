@@ -48,7 +48,7 @@ app.get("/auth/login", authController.login);
 
 // Ignore for now
 app.get("/register", authController.register);
-app.get("/login", forwardAuthenticated, authController.login);
+app.get("/login", forwardAuthenticated, authController.login );
 app.post("/register", authController.registerSubmit);
 app.post("/login", authController.loginSubmit);
 app.get("/logout", authController.logout);

@@ -90,7 +90,7 @@ background-color: #AFD198;
 border-radius: 20px;
 }
 
-nav button{
+nav a{
 font-family: Georgia, 'Times New Roman', Times, serif;
 background-color:white;
 color: #AFD198;
@@ -98,9 +98,10 @@ border: 1px solid #AFD198;
 border-radius: 10px;
 padding: 10px;
 font-size: 2em;
+text-decoration: none;
 }
 
-nav button:hover{
+nav a:hover{
 border: 1px solid white;
 background-color: #AFD198;
 color: white;

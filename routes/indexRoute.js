@@ -25,7 +25,8 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
           role: role,
           name: req.user.name,
           showNavbar: false,
-          userID: req.user.id
+          userID: req.user.id,
+
         });
       } else {
         // Handle the case where no results are returned
@@ -38,7 +39,6 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
       res.status(500).send("There was a problem retrieving your account information. Please try again later.");
     });
 });
-
 
 // Route to render the admin page for admin users only
 router.get("/admin", ensureAuthenticated, isAdmin, (req, res) => {
