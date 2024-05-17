@@ -10,7 +10,7 @@ const { forwardAuthenticated } = require("./middleware/checkAuth");
 const authController = require("./controller/auth_controller");
 const fs = require('fs');
 const app = express();
-
+const flash = require('connect-flash');
 require('dotenv').config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,8 +21,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(
     session({
       secret: "secret",
-      resave: false,
-      saveUninitialized: false,
+      resave: true,
+      saveUninitialized: true,
       cookie: {
         httpOnly: true,
         secure: false,
@@ -30,7 +30,7 @@ app.use(
       },
     })
 );
-
+app.use(flash());  
 // Use EJS layouts for rendering views
 app.use(ejsLayouts);
 

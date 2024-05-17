@@ -4,6 +4,7 @@ const passport = require("../middleware/passport");
 const bycrypt = require("bcrypt"); // Library for hashing passwords
 const saltRounds = 10; // Number of rounds to use for the salt, salt is used to hash the password securely
 // Salt rounds is the number of rounds the password hashing algorithm executes to hash the password
+const { checkIfEmailExists } = require("../controller/database_controller");
 
 let authController = {
   login: (req, res) => {
@@ -11,7 +12,7 @@ let authController = {
   },
 
   register: (req, res) => {
-    res.render("auth/register", { role: 'user', name: 'Guest', showNavbar: true});
+    res.render("auth/register", { role: 'user', name: 'Guest', showNavbar: true, error: req.flash('error')});
   },
 
   loginSubmit: passport.authenticate("local", {
@@ -20,6 +21,15 @@ let authController = {
   }),
 
   registerSubmit: async (req, res) => {
+    const email = req.body.email;
+    const emailExists = await checkIfEmailExists(email);
+    if (emailExists) {
+      console.log("Email already exists");
+      req.flash('error', 'Email already exists');
+      res.redirect("/register");
+      return;
+    }
+
     const userPassword = req.body.password;
     const hashedPassword = await bycrypt.hash(userPassword, saltRounds) // Hash the password using bcrypt
     .then((hash) => {

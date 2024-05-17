@@ -93,16 +93,16 @@ const databaseController = {
                 res.status(500).send('Error getting pets');
             }
         },
-        // TODO: Create several functions to interact with the database
-        // Pet functions
-        // Create a new pet
-        // Set Pet's medical history
-        // Set Pet's owner
-        // Set Pet's breed
-        // Set Pet's age
-        // User functions
-        
-    };
+    checkIfEmailExists: async (email) => {
+        const [rows] = await promiseUserPool.query('SELECT * FROM users WHERE email = ?', [email]);
+        if (rows.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+};
+
     
     
 
