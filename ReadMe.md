@@ -23,20 +23,16 @@ Views Added:
 - user profile
 - schedule
 - logout button
+- prescriptions
 
 Views left:
 - edit pet page **(WIP)** (be able to edit what is on database and reflect that)
-- edit button
 - input button
-- prescriptions => view is implemented (however, the database is not implemented) **(WIP)**
 
 TODO:
 ------
 Creating database routes, such as a full db reset for testing purposes
 
-Implement pet_profile_views and fetch pet info from database
-
-Get links working:
-- the *petIndex* link from the navbar needs to be accessible accross all views to access the index
+implement pet_edit page for pet info updates + edits
 
 Fixing CSS

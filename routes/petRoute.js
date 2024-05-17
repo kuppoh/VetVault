@@ -7,6 +7,10 @@ const databaseController = require("../controller/database_controller");
 
 router.get('/petIndex/:id', ensureAuthenticated, databaseController.getPetsbyUserID);
 
+router.get('/petIndex/', ensureAuthenticated, (req, res) => 
+{
+  res.redirect(`/petIndex/${req.user.id}`);
+});
 // 
 
 router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID);

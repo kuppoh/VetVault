@@ -44,48 +44,34 @@ const databaseController = {
     getPetbyID: async (req, res) => {
         try {
             const petId = req.params.id;
-            const [petRows] = await promiseUserPool.query('SELECT * FROM PET WHERE PetID = ?', petId);
-            const [medRows] = await promiseUserPool.query('SELECT * FROM PET_MED_INT JOIN PET ON PET_MED_INT.PetID = PET.PetID JOIN MEDICATION ON PET_MED_INT.MedID = MEDICATION.MedID WHERE PET.PetID = ?', petId);
-            const [conRows] = await promiseUserPool.query('SELECT * FROM PET_CON_INT JOIN PET ON PET_CON_INT.PetID = PET.PetID JOIN `CONDITIONS` ON PET_CON_INT.ConditionID = `CONDITIONS`.ConditionID WHERE PET.PetID = ?', petId);
-            const [weightRows] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK WHERE PetID = ?', petId);
-            const [ownerRows] = await promiseUserPool.query('SELECT * FROM OWNERSHIP_INT JOIN users ON OWNERSHIP_INT.UserID = users.ID WHERE OWNERSHIP_INT.PetID = ?', petId);
-
-            console.log(petRows);
-            console.log(medRows);
-            console.log(conRows);
-            console.log(weightRows);
-            console.log(ownerRows);
+            const [rows] = await promiseUserPool.query(`
+                SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, U.name as UserName
+                FROM PET P
+                LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
+                LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID
+                LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID
+                LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID
+                LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID
+                LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID
+                LEFT JOIN users U ON OI.UserID = U.ID
+                WHERE P.PetID = ?
+                `, petId);
     
-            if (petRows.length > 0) {
-                const pet = petRows[0];
-                
-                pet.medications = medRows;
-                const med = medRows[0]['MedName'];
-                const medDesc = medRows[0]['Description'];
-                
-                pet.conditions = conRows;
-                const cons = conRows[0]['BodyPart'];
-                const symptoms = conRows[0]['Symptom'];
-                const consDesc = conRows[0]['Description'];
-                
-                pet.weightChecks = weightRows;
-                const weight = weightRows[0]['Weight'];
-    
-                const owner = ownerRows[0]['name'];
+            if (rows.length > 0) {
+                const pet = rows[0];
                 res.render('pets/pet_profile', 
                 {
                     pet: pet, 
-                    med: med,
-                    medDesc: medDesc, 
-                    cons: cons, 
-                    symptoms: symptoms,
-                    consDesc: consDesc,
-                    weight: weight, 
-                    owner: owner,
+                    med: pet.MedName,
+                    medDesc: pet.MedDescription, 
+                    cons: pet.BodyPart, 
+                    symptoms: pet.Symptom,
+                    consDesc: pet.ConDescription,
+                    weight: pet.Weight, 
+                    owner: pet.UserName,
                     showNavbar: true,
+                });
 
-                }
-                );
             } else {
                 res.status(404).send('Pet not found');
             }

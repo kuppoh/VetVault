@@ -57,8 +57,23 @@ router.get("/schedule", ensureAuthenticated, (req, res) => {
   res.render("user/schedule", { showNavbar: true });
 });
 
-router.get("/prescriptions/", ensureAuthenticated, (req, res) => {
-  res.render("user/prescriptions", { showNavbar: true });
+router.get("/prescriptions", ensureAuthenticated, async (req, res) => {
+  const userId = req.user.id;
+  const [rows] = await promiseUserPool.query(`
+    SELECT P.Name, S.DateTime, M.MedName, M.Description, PMI.Portion, PMI.Rate
+    FROM PRESCRIPTION PRS
+    JOIN SCHEDULE S ON PRS.ScheduleID = S.ScheduleID
+    JOIN PET_MED_INT PMI ON PRS.MedID = PMI.MedID
+    JOIN MEDICATION M ON PMI.MedID = M.MedID
+    JOIN OWNERSHIP_INT O ON S.PetID = O.PetID
+    JOIN PET P ON O.PetID = P.PetID
+    WHERE O.UserID = ?
+  `, userId);
+
+  res.render("user/prescriptions", { 
+    showNavbar: true,
+    prescriptions: rows
+  });
 });
 // Route to render the admin page for admin users only
 router.get("/admin", ensureAuthenticated, isAdmin, (req, res) => {

@@ -6,13 +6,12 @@
         <p>Gender: <%- pet.Gender %></p>
         <p>Species: <%- pet.Specie %></p>
         <p>Breed: <%- pet.Breed %></p>
-        <p>Weight: <%- weight %></p>
+        <p>Weight: <%- pet.Weight %></p>
         <p>Birthdate: <%- pet.BirthDate %></p>
-        <p>description: <%- pet.Description %></p>
-        <p>Owned By: <button><%- owner %></button></p>
-        <p>Conditions: <%- cons %> Symptom: <%- symptoms %> Description: <%- consDesc %> </p>
-        <p>Medications: <%- med %> Description: <%- medDesc %></p>
-        
-        <!-- <button>Edit</button> -->
+        <p>Description: <%- pet.Description %></p>
+        <p>Owned By: <button><%- pet.UserName %></button></p>
+        <p>Conditions: <%- pet.BodyPart %> | Symptom: <%- pet.Symptom %> | Description: <%- pet.ConDescription %> </p>
+        <p>Medications: <%- pet.MedName %> | Description: <%- pet.MedDescription %></p>
+
     </div>
 </div>

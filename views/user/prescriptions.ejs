@@ -1,3 +1,13 @@
 <div id="prescriptionList">
   <h1>Prescriptions</h1>
-</div>
+  <% prescriptions.forEach(function(prescription) { %>
+    <div class="prescription">
+      <h2>Pet Name: <%= prescription.Name %></h2>
+      <p>Medication: <%= prescription.MedName %></p>
+      <p>Medication Date: <%= prescription.DateTime %></p>
+      <p>Description: <%= prescription.Description %></p>
+      <p>Medication Portions: <%= prescription.Portion %></p>
+      <p>Mediation Rates: <%= prescription.Rate %></p>
+    </div>
+  <% }); %>
+</div>  
