@@ -24,15 +24,20 @@ Views Added:
 - schedule
 - logout button
 - prescriptions
+- edit pet page
 
-Views left:
-- edit pet page **(WIP)** (be able to edit what is on database and reflect that)
+Views + tasks left:
+- edit prescriptions?
+  - add prescriptions?
+  - delete precriptions?
 - input button
+- add / create pet
+- delete pet
+
+**FIX CSS**
 
 TODO:
 ------
 Creating database routes, such as a full db reset for testing purposes
 
-implement pet_edit page for pet info updates + edits
-
-Fixing CSS
+**Fixing CSS**

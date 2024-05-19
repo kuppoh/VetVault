@@ -9,5 +9,32 @@
       <p>Medication Portions: <%= prescription.Portion %></p>
       <p>Mediation Rates: <%= prescription.Rate %></p>
     </div>
+
+    <button id="edit">Edit</button>
+    <div id="content" style="display:none">
+      <form action="/prescriptions" method="POST">
+        <div>
+          <p>Current Medication: <%- prescription.MedName %></p>
+          <label for="medName">Edit Med Name:</label>
+          <input type="text" id="medName" name="medName" placeholder="Enter Med Name">
+        </div>
+        <div>
+          <input type="submit" value="Save">
+        </div>
+      </form>
+    </div>
+
   <% }); %>
+  <script>
+    document.getElementById("edit").onclick = function () {
+        var theDiv = document.getElementById("content");
+        if (theDiv.style.display == 'none') {
+            theDiv.style.display = 'block';
+            this.innerHTML = 'Close';
+        } else {
+            theDiv.style.display = 'none';
+            this.innerHTML = 'Show';
+        }
+    }
+</script>
 </div>  
