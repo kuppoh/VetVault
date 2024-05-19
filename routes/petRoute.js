@@ -13,8 +13,46 @@ router.get('/petIndex/', ensureAuthenticated, (req, res) =>
 });
 // 
 
-router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID);
+// edit pet info
+// router.get('/petEdit/:id', ensureAuthenticated, (req, res) => {
+//   res.redirect(`/petProfile/${req.params.id}/petEdit`);
+// });
+// router.get('/petProfile/:id/petEdit', ensureAuthenticated, databaseController.getPetbyID, (req, res) => {
+//   res.render('pets/edit_pet', 
+//     {
+//       pet: req.pet, 
+//       med: req.pet.MedName,
+//       medDesc: req.pet.MedDescription, 
+//       cons: req.pet.BodyPart, 
+//       symptoms: req.pet.Symptom,
+//       consDesc: req.pet.ConDescription,
+//       weight: req.pet.Weight, 
+//       owner: req.pet.UserName,
+//       showNavbar: true,
+//     });
+// });
 
-router.get('/petProfile/:id/petEdit', ensureAuthenticated, databaseController.editPet);
+// router.post('/petProfile/:id/petEdit', ensureAuthenticated, databaseController.editPet);
+
+
+// getting pet profile
+router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID, (req, res) => {
+  res.render('pets/pet_profile', 
+    {
+      pet: req.pet, 
+      med: req.pet.MedName,
+      medDesc: req.pet.MedDescription, 
+      cons: req.pet.BodyPart, 
+      symptoms: req.pet.Symptom,
+      consDesc: req.pet.ConDescription,
+      weight: req.pet.Weight, 
+      owner: req.pet.UserName,
+      showNavbar: true,
+    });
+});
+
+router.post('/petProfile/:id', ensureAuthenticated, databaseController.editPet);
+
+// router.post('/petProfile/:id/petEdit', ensureAuthenticated, databaseController.getPetbyID);
 
 module.exports = router;
