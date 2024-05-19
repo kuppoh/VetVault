@@ -12,18 +12,10 @@
         <p>Owned By: <button><%- pet.UserName %></button></p>
         <p>Conditions: <%- pet.BodyPart %> | Symptom: <%- pet.Symptom %> | Description: <%- pet.ConDescription %> </p>
         <p>Medications: <%- pet.MedName %> | Description: <%- pet.MedDescription %></p>
-
     </div>
-    <form action="/petEdit/<%- pet.PetID %>" method="GET">
-        <button>Edit Pet</button>
-    </form>
-    <form action="/editMedication/<%- pet.PetID %>" method="GET">
-        <button>Edit Medication</button>
-    </form>
 
-
-    <button id="editGender">Edit</button>
-    <div id="contentGender" style="display:none">
+    <button id="edit">Edit</button>
+    <div id="content" style="display:none">
         <form action="/petProfile/<%-pet.PetID %>" method="POST">
             <div>
                 <p>Current Name: <%- pet.Name %> </p>
@@ -93,30 +85,8 @@
 
 
     <script>
-        document.getElementById("editGender").onclick = function () {
-            var theDiv = document.getElementById("contentGender");
-            if (theDiv.style.display == 'none') {
-                theDiv.style.display = 'block';
-                this.innerHTML = 'Close';
-            } else {
-                theDiv.style.display = 'none';
-                this.innerHTML = 'Show';
-            }
-        }
-
-        document.getElementById("editName").onclick = function () {
-            var theDiv = document.getElementById("contentName");
-            if (theDiv.style.display == 'none') {
-                theDiv.style.display = 'block';
-                this.innerHTML = 'Close';
-            } else {
-                theDiv.style.display = 'none';
-                this.innerHTML = 'Show';
-            }
-        }
-
-        document.getElementById("editSpecie").onclick = function () {
-            var theDiv = document.getElementById("contentSpecie");
+        document.getElementById("edit").onclick = function () {
+            var theDiv = document.getElementById("content");
             if (theDiv.style.display == 'none') {
                 theDiv.style.display = 'block';
                 this.innerHTML = 'Close';
