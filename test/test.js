@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const envPath = path.resolve(__dirname, '..', '.env');
 dotenv.config({ path: envPath });
 const { isAdmin } = require('../middleware/checkAuth');
+const { isAdmin } = require('../middleware/checkAuth');
 const assert = require('assert');
 const bcrypt = require('bcrypt');
 const request = require('supertest');
