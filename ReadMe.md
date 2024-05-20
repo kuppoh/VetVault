@@ -36,8 +36,4 @@ Views + tasks left:
 
 **FIX CSS**
 
-TODO:
-------
-Creating database routes, such as a full db reset for testing purposes
-
 **Fixing CSS**
