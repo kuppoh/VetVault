@@ -30,13 +30,12 @@ const databaseController = {
         let Symptom = req.body.symptom;
         let ConDescription = req.body.conDescription;
         let Weight = req.body.weight;
+        let WeightDate = req.body.weightDate;
         let UserName = req.body.userName;
         let petId = req.params.id;
 
         try {
-            console.log(Name, Gender, Specie, Breed, Description, MedName, MedDescription, BodyPart, Symptom, ConDescription, Weight, UserName, petId);
-
-            const [rows] = await promiseUserPool.query("SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, U.name as UserName FROM PET P LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID LEFT JOIN users U ON OI.UserID = U.ID WHERE P.PetID = ?", [petId]);
+            const [rows] = await promiseUserPool.query("SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName FROM PET P LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID LEFT JOIN users U ON OI.UserID = U.ID WHERE P.PetID = ?", [petId]);
             const currentInfo = rows[0];
 
             if (Name === "") {
@@ -76,6 +75,9 @@ const databaseController = {
                 UserName = currentInfo.UserName;
             }
 
+            
+            console.log(Name, Gender, Specie, Breed, Description, MedName, MedDescription, BodyPart, Symptom, ConDescription, Weight, UserName, petId, WeightDate);
+
             await promiseUserPool.query(`
             UPDATE PET P
             LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
@@ -95,11 +97,16 @@ const databaseController = {
                 C.BodyPart = ?,
                 C.Symptom = ?,
                 C.Description = ?,
-                W.Weight = ?,
                 users.name = ?
             WHERE P.PetID = ?
-        `, [Name, Gender, Specie, Breed, Description, MedName, MedDescription, BodyPart, Symptom, ConDescription, Weight, UserName, petId]);
-            console.log("Pet Updated");
+        `, [Name, Gender, Specie, Breed, Description, MedName, MedDescription, BodyPart, Symptom, ConDescription, UserName, petId]);
+            
+            // let Weight = req.body.weight; 
+
+            if (Weight !== "" && WeightDate !== "") {
+                await promiseUserPool.query('INSERT INTO WEIGHTCHECK (PetID, Weight, Date) VALUES ((SELECT DISTINCT w.PetID FROM WEIGHTCHECK w JOIN PET p ON w.PetID = p.PetID WHERE p.Name = ?), ?, ?)',[Name, Weight, WeightDate]);
+            }
+            
             res.redirect('/petProfile/' + petId);
         } catch (error) {
             console.error(error);
@@ -118,7 +125,7 @@ const databaseController = {
         try {
             const petId = req.params.id;
             const [rows] = await promiseUserPool.query(`
-                SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, U.name as UserName
+                SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName
                 FROM PET P
                 LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
                 LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID

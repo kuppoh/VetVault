@@ -25,6 +25,7 @@ router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID
       symptoms: req.pet.Symptom,
       consDesc: req.pet.ConDescription,
       weight: req.pet.Weight, 
+      weightDate: req.pet.Date,
       owner: req.pet.UserName,
       showNavbar: true,
     });

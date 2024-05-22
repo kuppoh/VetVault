@@ -44,6 +44,7 @@ let authController = {
       const newUser = {
         name: req.body.name,
         email: req.body.email,
+        phone_number: req.body.phone_number,
         password: hashedPassword, // Store the hashed password in the database
         role: "user",
         state: "unlocked"

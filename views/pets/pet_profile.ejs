@@ -7,6 +7,7 @@
         <p>Species: <%- pet.Specie %></p>
         <p>Breed: <%- pet.Breed %></p>
         <p>Weight: <%- pet.Weight %></p>
+        <p>Weight Date: <%- pet.Date %></p>
         <p>Birthdate: <%- pet.BirthDate %></p>
         <p>Description: <%- pet.Description %></p>
         <p>Owned By: <button><%- pet.UserName %></button></p>
@@ -64,13 +65,18 @@
             </div>
             <div>
                 <p>Current Condition Desc: <%- pet.ConDescription %></p>
-                <label for="conDescription">Edit Symptom:</label>
+                <label for="conDescription">Edit Description:</label>
                 <input type="text" id="conDescription" name="conDescription" placeholder="Enter Condition Desc">
             </div>
             <div>
                 <p>Current Weight: <%- pet.Weight %></p>
-                <label for="weight">Edit Owner:</label>
+                <label for="weight">Edit Weight:</label>
                 <input type="text" id="weight" name="weight" placeholder="Enter Weight">
+            </div>
+            <div>
+                <p>Weight Date: <%- pet.Date %></p>
+                <label for="weightDate">Edit Date:</label>
+                <input type="text" id="weightDate" name="weightDate" placeholder="yyyy-mm-dd">
             </div>
             <div>
                 <p>Current Owner: <%- pet.UserName %></p>
