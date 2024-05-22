@@ -3,18 +3,19 @@ const { promiseUserPool } = require('../config/database');
 const databaseController = {
     createPet: async (req, res) => {
         const pet = { // Will have to change based on the form that Kurtis makes
-            name: req.body.name,
-            breed: req.body.breed,
-            age: req.body.age,
-            medical_history: req.body.medical_history,
-            owner: req.body.owner
+            Name: req.body.name,
+            Birthdate: req.body.birthdate,
+            Gender: req.body.gender,
+            Specie: req.body.specie,
+            Breed: req.body.breed,
+            Description: req.body.description
         };
         try {
             await promiseUserPool.query('INSERT INTO PET SET ?', pet);
-            res.redirect('/pets');
+            res.redirect('/petIndex');
         } catch (error) {
             console.error(error);
-            res.redirect('/pets');
+            res.redirect('/petIndex');
         }
     },
     editPet: async (req, res) => {
@@ -107,10 +108,10 @@ const databaseController = {
     deletePet: async (req, res) => {
         try {
             await promiseUserPool.query('DELETE FROM PET WHERE id = ?', req.params.id);
-            res.redirect('/pets');
+            res.redirect('/petIndex');
         } catch (error) {
             console.error(error);
-            res.redirect('/pets');
+            res.redirect('/petIndex');
         }
     },
     getPetbyID: async (req, res, next) => {
@@ -160,6 +161,32 @@ const databaseController = {
         } else {
             return false;
         }
+    },
+    getLatestWeightCheck: async (req, res, next) => {
+        try {
+        const [results] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK wc WHERE wc.PetID = ? ORDER BY wc.Date DESC LIMIT 1', [req.params.id]);
+        if (results.length > 0) {
+            req.weight = results[0];
+            next();
+        } else {
+            res.status(404).send('Weight check not found');
+        } } catch (err) {
+            console.error(err);
+            res.status(500).send('Error getting weight check');
+        }
+},
+    getPreivousWeightCheck: async (req, res, next) => {
+        try {
+            const [results] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK wc WHERE wc.PetID = ? ORDER BY wc.Date DESC LIMIT 1, 1', [req.params.id]);
+            if (results.length > 0) {
+                req.weight = results[0];
+                next();
+            } else {
+                res.status(404).send('Weight check not found');
+            } } catch (err) {
+                console.error(err);
+                res.status(500).send('Error getting weight check');
+            }
     }
 };
 

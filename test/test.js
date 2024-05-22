@@ -3,11 +3,12 @@ const dotenv = require('dotenv');
 const envPath = path.resolve(__dirname, '..', '.env');
 dotenv.config({ path: envPath });
 const { isAdmin } = require('../middleware/checkAuth');
-const { isAdmin } = require('../middleware/checkAuth');
 const assert = require('assert');
 const bcrypt = require('bcrypt');
 const request = require('supertest');
 const { promiseUserPool } = require('../config/database');
+const { databaseController } = require('../controller/database_controller');
+
 
 describe('login', function() {
   it('should return success if credentials are valid', function(done) {
@@ -169,3 +170,5 @@ describe('Test isAdmin middleware', () => {
         assert.strictEqual(result, true);
     });
 });
+
+
