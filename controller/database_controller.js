@@ -186,7 +186,7 @@ const databaseController = {
         try {
             const [results] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK wc WHERE wc.PetID = ? ORDER BY wc.Date DESC LIMIT 1, 1', [req.params.id]);
             if (results.length > 0) {
-                req.weight = results[0];
+                req.prevWeight = results[0];
                 next();
             } else {
                 res.status(404).send('Weight check not found');

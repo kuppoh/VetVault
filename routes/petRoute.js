@@ -15,7 +15,7 @@ router.get('/petIndex/', ensureAuthenticated, (req, res) =>
 router.post('/deletePet/:id', ensureAuthenticated, databaseController.deletePet);
 
 // getting pet profile
-router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID, (req, res) => {
+router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID, databaseController.getLatestWeightCheck, databaseController.getPreivousWeightCheck, (req, res) => {
   res.render('pets/pet_profile', 
     {
       pet: req.pet, 
@@ -28,8 +28,13 @@ router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID
       weightDate: req.pet.Date,
       owner: req.pet.UserName,
       showNavbar: true,
+      latestWeight: req.weight.Weight,
+      latestWeightDate: req.weight.Date,
+      previousWeight: req.prevWeight.Weight,
+      previousWeightDate: req.prevWeight.Date,
     });
 });
+
 
 router.post('/petProfile/:id', ensureAuthenticated, databaseController.editPet);
 
