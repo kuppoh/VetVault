@@ -24,6 +24,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Setup SSL certificate
+      run: |
+        mkdir -p $HOME/decoded
+        echo "${{ secrets.SSL_CERT_BASE64 }}" | base64 --decode > $HOME/decoded/certificate.crt
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    env:
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+      SSL_CERT_PATH: $HOME/decoded/certificate.crt
