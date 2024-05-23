@@ -10,12 +10,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
         node-version: ['20.x']
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v4
@@ -26,8 +25,10 @@ jobs:
         cache: 'npm'
     - name: Setup SSL certificate
       run: |
-        mkdir -p $HOME/decoded
-        echo "${{ secrets.SSL_CERT_BASE64 }}" | base64 --decode > $HOME/decoded/certificate.crt
+        mkdir -p $HOME\decoded
+        $certContent = [System.Convert]::FromBase64String("${{ secrets.SSL_CERT_BASE64 }}")
+        [System.IO.File]::WriteAllBytes("$HOME\decoded\certificate.crt", $certContent)
+      shell: pwsh
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
@@ -37,4 +38,4 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_DATABASE: ${{ secrets.DB_DATABASE }}
       DB_PORT: ${{ secrets.DB_PORT }}
-      SSL_CERT_PATH: $HOME/decoded/certificate.crt
+      SSL_CERT_PATH: $HOME\decoded\certificate.crt
