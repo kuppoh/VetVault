@@ -4,7 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv'); // Import the dotenv module
 dotenv.config(); // Configure dotenv to read the .env file
 
-const sslCertPath = (process.env.SSL_CERT_PATH); // Get the SSL certificate path from the .env file
+const sslCertPath = path.join(__dirname, process.env.SSL_CERT_PATH); // Get the SSL certificate path from the .env file
 
 let sslOptions = {};
 try { // Try to load the SSL certificate from the path
