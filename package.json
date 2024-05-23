@@ -17,6 +17,7 @@
     "socket.io": "^4.7.5"
   },
   "devDependencies": {
+    "c8": "^9.1.0",
     "chai": "^5.1.1",
     "nodemon": "^3.1.0",
     "nyc": "^15.1.0",
@@ -24,9 +25,9 @@
     "supertest": "^7.0.0"
   },
   "scripts": {
-    "test": "c8 --check-coverage --lines 100 npm test",
-    "coverage": "nyc report --reporter=html --reporter=text --reporter=text-lcov",
+    "test": "mocha --exit",
+    "coverage": "c8 --check-coverage --lines 100 npm test",
     "start": "nodemon server.js",
-    "ci": "start-server-and-test start http://localhost:3000 test"
+    "ci": "start-server-and-test start http://localhost:3000 coverage"
   }
 }
