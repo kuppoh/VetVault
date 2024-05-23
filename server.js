@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { promiseUserPool } = require('./config/database');
 const databaseRoute = require('./routes/databaseRoute');
 const indexRoute = require('./routes/indexRoute');
 const petRoute = require('./routes/petRoute');
@@ -10,13 +10,48 @@ const passport = require("./middleware/passport");
 const { forwardAuthenticated } = require("./middleware/checkAuth");
 const authController = require("./controller/auth_controller");
 const fs = require('fs');
-
+const notificationRoute = require('./routes/notificationsRoute');
 const app = express(); 
 const flash = require('connect-flash');
 require('dotenv').config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(notificationRoute);
+// Socket.io setup
+const http = require('http');
+const socketIO = require('socket.io');
+const server = http.createServer(app);
+const io = socketIO(server);
 
+// Socket.io connection handling
+
+const PORT = process.env.PORT || 3000;
+
+// Socket.io connection handling
+io.on('connection', (socket) => {
+  console.log('A client connected');
+  const userId = socket.handshake.query.userId; // Make sure userId is passed on connection
+
+  const fetchAndEmitNotifications = async () => {
+      const [notifications] = await promiseUserPool.query(`
+          SELECT Description FROM REMINDER R
+          JOIN WEIGHTCHECK W ON R.WCID = W.WCID
+          JOIN OWNERSHIP_INT O ON W.PetID = O.PetID
+          WHERE O.UserID = ?;
+      `, [userId]);
+      io.to(socket.id).emit(`notification_${userId}`, { notifications });
+      console.log('Emitting notifications to client');
+  };
+
+  const notificationInterval = setInterval(fetchAndEmitNotifications, 5000);
+
+  socket.on('disconnect', () => {
+      console.log('A client disconnected');
+      clearInterval(notificationInterval);
+  });
+
+  fetchAndEmitNotifications(); // Initial fetch
+});
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -60,10 +95,9 @@ app.get("/test", (req, res) => {
 }
 );
 
-app.listen(3000, function () {
-  console.log(
-    "Server running. Visit: http://localhost:3000/login in your browser 🚀"
-  );
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
+module.exports = { io }
 

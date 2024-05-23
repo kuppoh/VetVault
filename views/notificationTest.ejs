@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Notifications</title>
+</head>
+<body>
+  <ul id="notifications">
+    <% notifications.forEach(notification => { %>
+      <li><%= notification.Description %></li>
+    <% }) %>
+  </ul>
+  
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // Replace <%= userId %> with the actual userId from the server side
+    const userId = '<%= userId %>';
+    const socket = io({
+      query: { userId }
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    socket.on('disconnect', () => {
+      console.log('Disconnected from server');
+    });
+
+    socket.on(`notification_${userId}`, (data) => {
+      console.log('Received notifications:', data.notifications);
+      const notificationsList = document.getElementById('notifications');
+      notificationsList.innerHTML = ''; // Clear the current notifications
+      data.notifications.forEach(notification => {
+        const newNotificationItem = document.createElement('li');
+        newNotificationItem.textContent = notification.Description;
+        notificationsList.appendChild(newNotificationItem);
+      });
+    });
+  </script>
+</body>
+</html>
