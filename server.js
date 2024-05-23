@@ -40,10 +40,10 @@ io.on('connection', (socket) => {
           WHERE O.UserID = ?;
       `, [userId]);
       io.to(socket.id).emit(`notification_${userId}`, { notifications });
-      console.log('Emitting notifications to client');
+      
   };
 
-  const notificationInterval = setInterval(fetchAndEmitNotifications, 5000);
+  const notificationInterval = setInterval(fetchAndEmitNotifications, 300);
 
   socket.on('disconnect', () => {
       console.log('A client disconnected');
