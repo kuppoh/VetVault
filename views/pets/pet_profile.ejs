@@ -88,12 +88,14 @@
                 <input type="text" id="userName" name="userName" placeholder="Enter Owner">
             </div>
             <div>
-                <input type="submit" value="Save">
+                <button type="submit" id="save">Save</button>
             </div>
         </form>
     </div>
 
     <script>
+
+        
         document.getElementById("edit").onclick = function () {
             var theDiv = document.getElementById("content");
             if (theDiv.style.display == 'none') {
@@ -104,5 +106,9 @@
                 this.innerHTML = 'Show';
             }
         }
+
+        // use built in js function for notifications 
+        // maybe use polling for databse ?
+
     </script>
 </div>

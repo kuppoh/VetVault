@@ -1,4 +1,5 @@
 const express = require('express');
+
 const databaseRoute = require('./routes/databaseRoute');
 const indexRoute = require('./routes/indexRoute');
 const petRoute = require('./routes/petRoute');
@@ -9,7 +10,8 @@ const passport = require("./middleware/passport");
 const { forwardAuthenticated } = require("./middleware/checkAuth");
 const authController = require("./controller/auth_controller");
 const fs = require('fs');
-const app = express();
+
+const app = express(); 
 const flash = require('connect-flash');
 require('dotenv').config();
 app.use(express.json());
@@ -57,6 +59,7 @@ app.get("/test", (req, res) => {
   res.send("Test page");
 }
 );
+
 app.listen(3000, function () {
   console.log(
     "Server running. Visit: http://localhost:3000/login in your browser 🚀"

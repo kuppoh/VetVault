@@ -25,6 +25,8 @@ const userPool = mysql.createPool({ // Create a connection pool to the MySQL dat
     ssl: sslOptions
 });
 
+
 const promiseUserPool = userPool.promise(); // Create a promise pool from the connection pool
+
 
 module.exports = { promiseUserPool }; // Export the promise pool for use in other modules

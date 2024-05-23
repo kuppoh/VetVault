@@ -1,5 +1,4 @@
 const { promiseUserPool } = require('../config/database');
-
 const databaseController = {
     createPet: async (req, res) => {
         const pet = { // Will have to change based on the form that Kurtis makes
@@ -197,7 +196,5 @@ const databaseController = {
     }
 };
 
-    
-    
 
 module.exports = databaseController;
