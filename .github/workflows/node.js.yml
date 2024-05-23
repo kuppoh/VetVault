@@ -38,4 +38,5 @@ jobs:
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_DATABASE: ${{ secrets.DB_DATABASE }}
       DB_PORT: ${{ secrets.DB_PORT }}
+      SSL_CERT_PATH: ${{ secrets.SSL_CERT_PATH }}
 
