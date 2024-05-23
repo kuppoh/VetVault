@@ -25,7 +25,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Setup SSL certificate
-      run: echo "${{ secrets.SSL_CERT_BASE64 }}" | base64 --decode > /path/to/decoded/certificate.crt
+      run: |
+        mkdir -p /path/to/decoded
+        echo "${{ secrets.SSL_CERT_BASE64 }}" | base64 --decode > /path/to/decoded/certificate.crt
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
@@ -36,5 +38,3 @@ jobs:
       DB_DATABASE: ${{ secrets.DB_DATABASE }}
       DB_PORT: ${{ secrets.DB_PORT }}
       SSL_CERT_PATH: /path/to/decoded/certificate.crt
-      
-      
