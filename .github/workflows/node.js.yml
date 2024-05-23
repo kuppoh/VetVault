@@ -25,7 +25,6 @@ jobs:
         cache: 'npm'
     - name: Setup SSL certificate
       run: |
-        mkdir -p ${{ github.workspace }}/config
         $certContent = [System.Convert]::FromBase64String("${{ secrets.SSL_CERT_BASE64 }}")
         [System.IO.File]::WriteAllBytes("${{ github.workspace }}/config/certificate.crt", $certContent)
         echo "SSL_CERT_PATH=config/certificate.crt" >> $GITHUB_ENV
