@@ -25,10 +25,10 @@ jobs:
         cache: 'npm'
     - name: Setup SSL certificate
       run: |
-        mkdir -p $HOME\decoded
+        mkdir -p ${{ github.workspace }}/config
         $certContent = [System.Convert]::FromBase64String("${{ secrets.SSL_CERT_BASE64 }}")
-        [System.IO.File]::WriteAllBytes("$HOME\decoded\certificate.crt", $certContent)
-        echo "SSL_CERT_PATH=$HOME\decoded\certificate.crt" >> $GITHUB_ENV
+        [System.IO.File]::WriteAllBytes("${{ github.workspace }}/config/certificate.crt", $certContent)
+        echo "SSL_CERT_PATH=config/certificate.crt" >> $GITHUB_ENV
       shell: pwsh
     - run: npm ci
     - run: npm run build --if-present
