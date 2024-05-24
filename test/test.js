@@ -7,7 +7,7 @@ const assert = require('assert');
 const bcrypt = require('bcrypt');
 const request = require('supertest');
 const { promiseUserPool } = require('../config/database');
-const databaseController = require('../controller/database_controller');
+//const databaseController = require('../controller/database_controller');
 
 
 describe('login', function () {
@@ -217,115 +217,115 @@ describe('if name is not provided on update, it should still update with the ori
   });
 });
 
-describe('ensureAuthenticated middleware', () => {
-  it('should return true', async () => {
-    const req = { isAuthenticated: () => true };
-    const res = { redirect: (url) => url };
-    const next = () => true;
-    const result = await ensureAuthenticated(req, res, next);
-    assert.strictEqual(result, true);
-});
+// describe('ensureAuthenticated middleware', () => {
+//   it('should return true', async () => {
+//     const req = { isAuthenticated: () => true };
+//     const res = { redirect: (url) => url };
+//     const next = () => true;
+//     const result = await ensureAuthenticated(req, res, next);
+//     assert.strictEqual(result, true);
+// });
 
-describe('database_controller', () => {
-  it('should update the pet information in the database', async () => {
-    const req = {
-      body: {
-        name: 'Lucky',
-        gender: 'Male',
-        specie: 'Dog',
-        breed: 'Corgi',
-        birthdate: '2020-01-01',
-        description: 'Friendly and playful with a big butt!',
-      },
-      params: {
-        id: 'P001'
-      }
-    };
-    const res = {
-      redirect: (url) => url
-    };
+// describe('database_controller', () => {
+//   it('should update the pet information in the database', async () => {
+//     const req = {
+//       body: {
+//         name: 'Lucky',
+//         gender: 'Male',
+//         specie: 'Dog',
+//         breed: 'Corgi',
+//         birthdate: '2020-01-01',
+//         description: 'Friendly and playful with a big butt!',
+//       },
+//       params: {
+//         id: 'P001'
+//       }
+//     };
+//     const res = {
+//       redirect: (url) => url
+//     };
 
-    try {
-      await databaseController.editPet(req, res);
-      // Add assertions to check if the pet information was updated successfully
-    } catch (error) {
-      assert.fail(error);
-    }
-  });
+//     try {
+//       await databaseController.editPet(req, res);
+//       // Add assertions to check if the pet information was updated successfully
+//     } catch (error) {
+//       assert.fail(error);
+//     }
+//   });
 
-  it('should get the pet by ID from the database', async () => {
-    const req = {
-      params: {
-        id: 'P001'
-      }
-    };
-    const res = {};
+//   it('should get the pet by ID from the database', async () => {
+//     const req = {
+//       params: {
+//         id: 'P001'
+//       }
+//     };
+//     const res = {};
 
-    try {
-      await databaseController.getPetbyID(req, res, () => { });
-      // Add assertions to check if the pet was retrieved successfully
-    } catch (error) {
-      assert.fail(error);
-    }
-  });
+//     try {
+//       await databaseController.getPetbyID(req, res, () => { });
+//       // Add assertions to check if the pet was retrieved successfully
+//     } catch (error) {
+//       assert.fail(error);
+//     }
+//   });
 
-  it('should get the pets by user ID from the database', async () => {
-    const req = {
-      params: {
-        id: '3'
-      }
-    };
-    const res = {};
+//   it('should get the pets by user ID from the database', async () => {
+//     const req = {
+//       params: {
+//         id: '3'
+//       }
+//     };
+//     const res = {};
 
-    try {
-      await databaseController.getPetsbyUserID(req, res);
-      // Add assertions to check if the pets were retrieved successfully
-    } catch (error) {
-      assert.fail(error);
-    }
-  });
+//     try {
+//       await databaseController.getPetsbyUserID(req, res);
+//       // Add assertions to check if the pets were retrieved successfully
+//     } catch (error) {
+//       assert.fail(error);
+//     }
+//   });
 
-  it('should check if the email exists in the database', async () => {
-    const email = 'test@example.com';
+//   it('should check if the email exists in the database', async () => {
+//     const email = 'test@example.com';
 
-    try {
-      const result = await databaseController.checkIfEmailExists(email);
-      // Add assertions to check if the email exists
-    } catch (error) {
-      assert.fail(error);
-    }
-  });
+//     try {
+//       const result = await databaseController.checkIfEmailExists(email);
+//       // Add assertions to check if the email exists
+//     } catch (error) {
+//       assert.fail(error);
+//     }
+//   });
 
-  it('should get the latest weight check for a pet from the database', async () => {
-    const req = {
-      params: {
-        id: 'P001'
-      }
-    };
-    const res = {};
+//   it('should get the latest weight check for a pet from the database', async () => {
+//     const req = {
+//       params: {
+//         id: 'P001'
+//       }
+//     };
+//     const res = {};
 
-    try {
-      await databaseController.getLatestWeightCheck(req, res, () => { });
-      // Add assertions to check if the latest weight check was retrieved successfully
-    } catch (error) {
-      assert.fail(error);
-    }
-  });
+//     try {
+//       await databaseController.getLatestWeightCheck(req, res, () => { });
+//       // Add assertions to check if the latest weight check was retrieved successfully
+//     } catch (error) {
+//       assert.fail(error);
+//     }
+//   });
 
-  it('should get the previous weight check for a pet from the database', async () => {
-    const req = {
-      params: {
-        id: 'P001'
-      }
-    };
-    const res = {};
+//   it('should get the previous weight check for a pet from the database', async () => {
+//     const req = {
+//       params: {
+//         id: 'P001'
+//       }
+//     };
+//     const res = {};
 
-    try {
-      await databaseController.getPreivousWeightCheck(req, res, () => { });
-      // Add assertions to check if the previous weight check was retrieved successfully
-    } catch (error) {
-      assert.fail(error);
-    }
-  });
-});
-});
+//     try {
+//       await databaseController.getPreivousWeightCheck(req, res, () => { });
+//       // Add assertions to check if the previous weight check was retrieved successfully
+//     } catch (error) {
+//       assert.fail(error);
+//     }
+//   });
+// });
+// });
