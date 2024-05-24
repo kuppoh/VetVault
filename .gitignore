@@ -1,0 +1,6 @@
+.env
+coverage
+config
+node_modules
+test
+.nyc_output
