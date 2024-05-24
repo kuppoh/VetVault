@@ -1,0 +1,114 @@
+<div id="profile_pet">
+    <h1><%- pet.Name %></h1>
+    <img id="pet_img" src="/images/jayzed" alt=" Doggo1 Profile Picture">
+    <div id="information_pet">
+        <p>Name: <%- pet.Name %> </p>
+        <p>Gender: <%- pet.Gender %></p>
+        <p>Species: <%- pet.Specie %></p>
+        <p>Breed: <%- pet.Breed %></p>
+        <p>Weight: <%- pet.Weight %></p>
+        <p>Weight Date: <%- pet.Date %></p>
+        <p>Latest Weight: <%- latestWeight %></p>
+        <p>Latest Weight Date: <%- latestWeightDate %></p>
+        <p>Previous Weight: <%- previousWeight %></p>
+        <p>Previous Weight Date: <%- previousWeightDate %></p>
+        <p>Birthdate: <%- pet.BirthDate %></p>
+        <p>Description: <%- pet.Description %></p>
+        <p>Owned By: <button><%- pet.UserName %></button></p>
+        <p>Conditions: <%- pet.BodyPart %> | Symptom: <%- pet.Symptom %> | Description: <%- pet.ConDescription %> </p>
+        <p>Medications: <%- pet.MedName %> | Description: <%- pet.MedDescription %></p>
+    </div>
+
+    <button id="edit">Edit</button>
+    <div id="content" style="display:none">
+        <form action="/petProfile/<%-pet.PetID %>" method="POST">
+            <div>
+                <p>Current Name: <%- pet.Name %> </p>
+                <label for="name">Edit Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter Name">
+            </div>
+            <div>
+                <p>Current Gender: <%- pet.Gender %></p>
+                <label for="gender">Edit Gender:</label>
+                <input type="text" id="gender" name="gender" placeholder="Enter Gender">
+            </div>
+            <div>
+                <p>Current Specie: <%- pet.Specie %></p>
+                <label for="specie">Edit Specie:</label>
+                <input type="text" id="specie" name="specie" placeholder="Enter Specie">
+            </div>
+            <div>
+                <p>Current Breed: <%- pet.Breed %></p>
+                <label for="breed">Edit Breed:</label>
+                <input type="text" id="breed" name="breed" placeholder="Enter Breed">
+            </div>
+            <div>
+                <p>Current Description: <%- pet.Description %></p>
+                <label for="description">Edit Description:</label>
+                <input type="text" id="description" name="description" placeholder="Enter Description">
+            </div>
+            <div>
+                <p>Current Medication Name: <%- pet.MedName %></p>
+                <label for="medName">Edit Medication Name:</label>
+                <input type="text" id="medName" name="medName" placeholder="Enter Medication Name">
+            </div>
+            <div>
+                <p>Current Medication Desc: <%- pet.MedDescription %></p>
+                <label for="medDescription">Edit Medication Desc:</label>
+                <input type="text" id="medDescription" name="medDescription" placeholder="Enter Medication Desc">
+            </div>
+            <div>
+                <p>Current Body Part: <%- pet.BodyPart %></p>
+                <label for="bodyPart">Edit Body Part:</label>
+                <input type="text" id="bodyPart" name="bodyPart" placeholder="Enter Body Part">
+            </div>
+            <div>
+                <p>Current Symptom: <%- pet.symptom %></p>
+                <label for="symptom">Edit Symptom:</label>
+                <input type="text" id="symptom" name="symptom" placeholder="Enter Symptom">
+            </div>
+            <div>
+                <p>Current Condition Desc: <%- pet.ConDescription %></p>
+                <label for="conDescription">Edit Description:</label>
+                <input type="text" id="conDescription" name="conDescription" placeholder="Enter Condition Desc">
+            </div>
+            <div>
+                <p>Current Weight: <%- pet.Weight %></p>
+                <label for="weight">Edit Weight:</label>
+                <input type="text" id="weight" name="weight" placeholder="Enter Weight">
+            </div>
+            <div>
+                <p>Weight Date: <%- pet.Date %></p>
+                <label for="weightDate">Edit Date:</label>
+                <input type="text" id="weightDate" name="weightDate" placeholder="yyyy-mm-dd">
+            </div>
+            <div>
+                <p>Current Owner: <%- pet.UserName %></p>
+                <label for="userName">Edit Owner:</label>
+                <input type="text" id="userName" name="userName" placeholder="Enter Owner">
+            </div>
+            <div>
+                <button type="submit" id="save">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+        
+        document.getElementById("edit").onclick = function () {
+            var theDiv = document.getElementById("content");
+            if (theDiv.style.display == 'none') {
+                theDiv.style.display = 'block';
+                this.innerHTML = 'Close';
+            } else {
+                theDiv.style.display = 'none';
+                this.innerHTML = 'Show';
+            }
+        }
+
+        // use built in js function for notifications 
+        // maybe use polling for databse ?
+
+    </script>
+</div>

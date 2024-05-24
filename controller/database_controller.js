@@ -124,7 +124,7 @@ const databaseController = {
         try {
             const petId = req.params.id;
             const [rows] = await promiseUserPool.query(`
-                SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName
+                SELECT P.*, PMI.Portion, PMI.Rate, PMI.Date as pmiDate, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName
                 FROM PET P
                 LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
                 LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID

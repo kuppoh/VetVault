@@ -27,7 +27,6 @@ router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID
       weight: req.pet.Weight, 
       weightDate: req.pet.Date,
       owner: req.pet.UserName,
-      showNavbar: true,
       latestWeight: req.weight.Weight,
       latestWeightDate: req.weight.Date,
       previousWeight: req.prevWeight.Weight,
