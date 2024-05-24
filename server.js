@@ -16,7 +16,10 @@ const flash = require('connect-flash');
 require('dotenv').config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(notificationRoute);
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // Socket.io setup
 const http = require('http');
 const socketIO = require('socket.io');
@@ -26,6 +29,7 @@ const io = socketIO(server);
 // Socket.io connection handling
 
 const PORT = process.env.PORT || 3000;
+
 
 // Socket.io connection handling
 io.on('connection', (socket) => {
@@ -52,8 +56,6 @@ io.on('connection', (socket) => {
 
   fetchAndEmitNotifications(); // Initial fetch
 });
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
     session({
@@ -77,6 +79,8 @@ app.use(passport.session());
 app.use(indexRoute);
 app.use(databaseRoute);
 app.use(petRoute);
+app.use(notificationRoute);
+
 // Set the view engine to EJS
 app.set("view engine", "ejs");
 
@@ -96,7 +100,7 @@ app.get("/test", (req, res) => {
 );
 
 server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`"Server running. Visit: http://localhost:3000/auth/login in your browser 🚀"`);
 });
 
 module.exports = { io }

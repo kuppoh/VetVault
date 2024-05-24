@@ -24,7 +24,6 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
           sessionStore: req.sessionStore,
           role: role,
           name: req.user.name,
-          showNavbar: false,
           userID: req.user.id,
 
         });

@@ -7,7 +7,7 @@ const router = express.Router();
 // Keep track of all connected sockets
 const sockets = new Set();
 
-router.get('/:userID', async (req, res) => {
+router.get('/homepage/:userID', async (req, res) => {
     try {
         const userID = req.params.userID;
         const [notifications] = await promiseUserPool.query(`

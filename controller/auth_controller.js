@@ -8,11 +8,11 @@ const { checkIfEmailExists } = require("../controller/database_controller");
 
 let authController = {
   login: (req, res) => {
-    res.render("auth/login", { role: 'user', name: 'Guest', showNavbar: true, });
+    res.render("auth/login", { role: 'user', name: 'Guest' });
   },
 
   register: (req, res) => {
-    res.render("auth/register", { role: 'user', name: 'Guest', showNavbar: true, error: req.flash('error')});
+    res.render("auth/register", { role: 'user', name: 'Guest', error: req.flash('error')});
   },
 
   loginSubmit: passport.authenticate("local", {
