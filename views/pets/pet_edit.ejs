@@ -1,40 +1,40 @@
 <div class="profileTemplate" id="editPage">
-  <div class="profileDetails">
-      <h2>Pet Profile</h2>
-      <!-- IMAGE SELECTION HERE -->
-      <div class="two-column-layout">
-          <p>Name: <%- pet.Name %></p>
-          <p>Age: <%- pet.age %></p>
-          <p>Gender: <%- pet.Gender %></p>
-          <p>Breed: <%- pet.Breed %></p>
-          <p>Birthdate: <%- pet.BirthDate %></p>
-          <p>Description: <%- pet.Description %></p>
-          <p>Owner: <%- pet.UserName %></p>
-      </div>
-      <form action="/petProfile/<%-pet.PetID%>" method="get">
-        <input type="submit" value="Cancel">
-    </form>
-  </div>
-  <div class="editPetInfo">
-      <h2>Edit Pet Information</h2>
-      <form action="/petProfile/<%-pet.PetID%>/edit" method="post">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name">
-          <label for="age">Age:</label>
-          <input type="number" id="age" name="age" placeholder="in progress" readonly>
-          <label for="gender">Gender:</label>
-          <select id="gender" name="gender">
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-          </select>
-          <label for="breed">Breed:</label>
-          <input type="text" id="breed" name="breed">
-          <label for="birthdate">Birthdate:</label>
-          <input type="date" id="birthdate" name="birthdate">
-          <label for="description">Description:</label>
-          <textarea id="description" name="description"></textarea>
-          <label for="userName">Owner:</label>
-          <input type="text" id="userName" name="userName">
-          <input type="submit" value="Update Pet Information">
-      </form>
-</div>
+    <div class="profileDetails">
+        <h2>Pet Profile</h2>
+        <!-- IMAGE SELECTION HERE -->
+        <div class="two-column-layout">
+            <p>Name: <%- pet.Name %></p>
+            <p>Age: <%- pet.age %></p>
+            <p>Gender: <%- pet.Gender %></p>
+            <p>Breed: <%- pet.Breed %></p>
+            <p>Birthdate: <%- pet.BirthDate %></p>
+            <p>Description: <%- pet.Description %></p>
+            <p>Owner: <%- pet.UserName %></p>
+        </div>
+        <form action="/petProfile/<%-pet.PetID%>" method="get">
+            <input type="submit" value="Cancel">
+        </form>
+    </div>
+    <div class="editPetInfo">
+        <h2>Edit Pet Information</h2>
+        <form action="/petProfile/<%-pet.PetID%>/edit" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="in progress" readonly>
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed">
+            <label for="birthdate">Birthdate:</label>
+            <input type="date" id="birthdate" name="birthdate">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            <label for="userName">Owner:</label>
+            <input type="text" id="userName" name="userName">
+            <input type="submit" value="Update Pet Information">
+        </form>
+    </div>

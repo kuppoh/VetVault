@@ -10,7 +10,7 @@
       <p>Mediation Rates: <%= prescription.Rate %></p>
     </div>
 
-    <button id="edit">Edit</button>
+    <button id="edit">Edit <%= prescription.Name %>'s treatment</button>
     <div id="content" style="display:none">
       <form action="/prescriptions" method="POST">
         <div>

@@ -42,7 +42,7 @@ body{
 }
 
 .header ul li{
-    padding: 30px;
+    padding: 20px;
 }
 
 .header ul a{
@@ -61,7 +61,6 @@ body{
     grid-template-columns: 33% 34% 33%;
     grid-template-rows: 1fr 3fr 1fr;
     align-items: center;
-
 }
 
 .loginBubble{
@@ -106,6 +105,66 @@ body{
     background-color: #655C56;
     color: white;
     font-size: 1.2em;
+}
+
+.loginBubble form button:hover{
+    background-color: #94D3AC;
+}
+
+.loginBubble a, p{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.loginBubble a:hover{
+    color: #655C56;
+}
+#information{
+    margin-top: 20px;
+}
+#information h1{
+    font-size: 3em;
+    margin-bottom: 20px;
+    padding: 0;
+    text-align: center;
+}
+
+#navigation{
+    justify-items: center;
+    display: flex;
+    margin: 0;
+    padding-top: 20px;;
+    height: fit-content;
+}
+
+#navigation button{
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #655C56;
+    color: white;
+    font-size: 3em;
+    width: 33.3vw;
+    height: 377px;
+
+}
+
+#navigation button:hover{
+    opacity: 30%;
+} 
+
+#myPets{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/myPets.jpg');
+}
+
+#prescriptions{
+    background-image:  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/prescriptions.jpg');
+}
+
+#schedule{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/schedule.jpg');
 }
 
 .registerTemplate{
@@ -155,7 +214,7 @@ body{
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     margin-top: 10px;
 }
 
@@ -295,9 +354,40 @@ body{
     font-size: 1.2em;
 }
 
+#scheduleBlock{
+    display: flex;
+    flex-direction: column;
+}
 
+#scheduleBlock h1{
+    font-size: 3em;
+    text-align: center;
+}
 
+#scheduleBlock iframe{
+    align-self: center;
+}
 
+.prescription {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0;
+    padding: 20px;
+    width: auto;
+    align-items: center;
+    justify-items: center;
+    background-color: #CCEDD2;
+    word-wrap: break-word;
+}
+
+#edit{
+    margin: 20px;
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #655C56;
+    background-color: #94D3AC;
+}
 
 
 

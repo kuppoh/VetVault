@@ -156,7 +156,7 @@ const databaseController = {
                 }
             } catch (error) {
                 console.error(error);
-                res.status(500).send('Error getting pets');
+                // res.status(500).send('Error getting pets');
             }
         },
     checkIfEmailExists: async (email) => {
