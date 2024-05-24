@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Profile</title>
+    <link rel="stylesheet" href="styling.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <img src="vetvault.png" alt="VetVault Logo">
+            <h1>VetVault</h1>
+        </div>
+        <ul>
+            <li><a href="/schedule">SCHEDULE</a></li>
+            <li><a href="/prescriptions">PRESCRIPTIONS</a></li>
+            <li><a href="/petlist">MY PETS</a></li>
+            <li><a href="/homepage">HOME</a></li>
+        </ul>
+    </header>
+    <div class="profileTemplate">
+        <div class="profileDetails">
+            <h2>Pet Profile</h2>
+            <%- petImage %>
+            <div class="two-column-layout">
+                <p>Name: <%- petName%></p>
+                <p>Age: <%- petAge%></p>
+                <p>Gender: <%- petGender%></p>
+                <p>Breed: <%- petBreed%></p>
+                <p>Birthday: <%- petBday%></p>
+                <p>Description: <%- petInfo%></p>
+                <p>Owner: <%- petOwner%></p>
+            </div>
+        </div>
+        <div class="petMedicalInfo">
+            <h2>Conditions</h2>
+            <div>
+                <p>Name: <%- conditionName%></p>
+                <p>Description: <%- conditionInfo%></p>
+                <p>Treatment: <%- conditionFix %></p>
+            </div>
+            <h2>Medications</h2>
+            <div>                
+                <p>Name: <%- medName%></p>
+                <p>Dosage: <%- medDosage%></p>
+                <p>Frequency: <%- medFreq%></p>
+            </div>
+            <h2>Weight Check</h2>
+            <div>
+                <p>Current Weight: <%- petWeight%></p>
+                <p>Previous Measurement: <%- lastWeight%></p>
+                <p>Measurement Date: <%- weightDate%></p>
+            </div>
+    </div>
+</body>
+</html>
