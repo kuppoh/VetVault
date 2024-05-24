@@ -10,6 +10,9 @@
       <p>Birthdate: <%- pet.BirthDate %></p>
       <p>Description: <%- pet.Description %></p>
       <p>Owner: <%- pet.UserName %></p>
+      <form action="/petProfile/<%-pet.PetID %>/edit" method="get">
+        <input type="submit" value="Edit Pet">
+      </form>
     </div>
   </div>
   <div class="petMedicalInfo">

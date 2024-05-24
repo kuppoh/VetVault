@@ -22,6 +22,7 @@ const databaseController = {
         let Gender = req.body.gender;
         let Specie = req.body.specie;
         let Breed = req.body.breed;
+        let BirthDate = req.body.birthdate;
         let Description = req.body.description;
         let MedName = req.body.medName;
         let MedDescription = req.body.medDescription;
@@ -42,6 +43,9 @@ const databaseController = {
             }
             if (Gender === "") {
                 Gender = currentInfo.Gender;
+            }
+            if (BirthDate === "") {
+                BirthDate = currentInfo.BirthDate;
             }
             if (Specie === "") {
                 Specie = currentInfo.Specie;
@@ -75,7 +79,7 @@ const databaseController = {
             }
 
             
-            console.log(Name, Gender, Specie, Breed, Description, MedName, MedDescription, BodyPart, Symptom, ConDescription, Weight, UserName, petId, WeightDate);
+            console.log(Name, Gender, BirthDate, Breed, Description, UserName, petId);
 
             await promiseUserPool.query(`
             UPDATE PET P
@@ -88,23 +92,18 @@ const databaseController = {
             LEFT JOIN users ON OI.UserID = users.id
             SET P.Name = ?,
                 P.Gender = ?,
-                P.Specie = ?,
+                P.BirthDate = ?,
                 P.Breed = ?,
                 P.Description = ?,
-                M.MedName = ?,
-                M.Description = ?,
-                C.BodyPart = ?,
-                C.Symptom = ?,
-                C.Description = ?,
                 users.name = ?
             WHERE P.PetID = ?
-        `, [Name, Gender, Specie, Breed, Description, MedName, MedDescription, BodyPart, Symptom, ConDescription, UserName, petId]);
+        `, [Name, Gender, BirthDate, Breed, Description, UserName, petId]);
             
             // let Weight = req.body.weight; 
 
-            if (Weight !== "" && WeightDate !== "") {
-                await promiseUserPool.query('INSERT INTO WEIGHTCHECK (PetID, Weight, Date) VALUES ((SELECT DISTINCT w.PetID FROM WEIGHTCHECK w JOIN PET p ON w.PetID = p.PetID WHERE p.Name = ?), ?, ?)',[Name, Weight, WeightDate]);
-            }
+            // if (Weight !== "" && WeightDate !== "") {
+            //     await promiseUserPool.query('INSERT INTO WEIGHTCHECK (PetID, Weight, Date) VALUES ((SELECT DISTINCT w.PetID FROM WEIGHTCHECK w JOIN PET p ON w.PetID = p.PetID WHERE p.Name = ?), ?, ?)',[Name, Weight, WeightDate]);
+            // }
             
             res.redirect('/petProfile/' + petId);
         } catch (error) {
