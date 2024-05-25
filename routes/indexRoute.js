@@ -3,6 +3,12 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated, isAdmin } = require("../middleware/checkAuth");
 const { promiseUserPool } = require("../config/database");
+const io = require('socket.io')();
+const databaseController = require("../controller/database_controller");
+
+// Keep track of all connected sockets
+const sockets = new Set();
+
 
 // Route to render the index page
 router.get("/", (req, res) => {
@@ -11,32 +17,56 @@ router.get("/", (req, res) => {
 });
 
 // Route to render the dashboard page for authenticated users
-router.get("/dashboard", ensureAuthenticated, (req, res) => {
-  // Retrieve the user's role from the MySQL database
-  console.log("Logged in user ID:", req.user.id);
-  promiseUserPool.query("SELECT role FROM users WHERE id = ?", [req.user.id])
-    .then(([results, fields]) => {
-      if (results.length > 0) {
-        const role = results[0].role;
-        // Render the dashboard view with user and session information
-        res.render("user/homepage", {
-          user: req.user,
-          sessionStore: req.sessionStore,
-          role: role,
-          name: req.user.name,
-          userID: req.user.id,
+router.get("/dashboard", ensureAuthenticated, databaseController.getPetsbyUserID, async (req, res) => {
+  try {
+    // Retrieve the user's role from the MySQL database
+    console.log("Logged in user ID:", req.user.id);
+    const [results] = await promiseUserPool.query("SELECT role FROM users WHERE id = ?", [req.user.id]);
+    if (results.length > 0) {
+      const role = results[0].role;
+      // Fetch notifications
+      const [notifications] = await promiseUserPool.query(`
+        SELECT Description FROM REMINDER R
+        JOIN WEIGHTCHECK W ON R.WCID = W.WCID
+        JOIN OWNERSHIP_INT O ON W.PetID = O.PetID
+        WHERE O.UserID = ?;
+      `, [req.user.id]);
 
-        });
-      } else {
-        // Handle the case where no results are returned
-        res.status(404).send("User not found");
-      }
-    })
-    .catch((error) => {
-      console.error("Error retrieving user role:", error);
-      // Provide user-friendly error feedback
-      res.status(500).send("There was a problem retrieving your account information. Please try again later.");
-    });
+      // Fetch prescriptions
+      const [prescriptions] = await promiseUserPool.query(`
+        SELECT O.UserID, O.PetID, P.Name, S.DateTime, M.MedName, M.Description, PMI.Portion, PMI.Rate
+        FROM PRESCRIPTION PRS
+        JOIN SCHEDULE S ON PRS.ScheduleID = S.ScheduleID
+        JOIN PET_MED_INT PMI ON PRS.MedID = PMI.MedID
+        JOIN MEDICATION M ON PMI.MedID = M.MedID
+        JOIN OWNERSHIP_INT O ON S.PetID = O.PetID
+        JOIN PET P ON O.PetID = P.PetID
+        WHERE O.UserID = ?
+      `, [req.user.id]);
+
+      // Render the dashboard view with user and session information
+      res.render("user/homepage", {
+        user: req.user,
+        sessionStore: req.sessionStore,
+        role: role,
+        name: req.user.name,
+        email: req.user.email,
+        phone: req.user.phone_number,
+        userID: req.user.id,
+        notifications,
+        pets: req.pets,
+        pet: req.pet,
+        prescriptions
+      });
+    } else {
+      // Handle the case where no results are returned
+      res.status(404).send("User not found");
+    }
+  } catch (error) {
+    console.error("Error retrieving user role:", error);
+    // Provide user-friendly error feedback
+    res.status(500).send("There was a problem retrieving your account information. Please try again later.");
+  }
 });
 
 

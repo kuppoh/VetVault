@@ -6,6 +6,7 @@ body{
     position: absolute;
     width: 100%;
     height: 100%;
+    background-color: #fafffa;
 }
 
 .header{
@@ -21,7 +22,7 @@ body{
 
 .header div{
     display: flex;
-    font-size: 1.2em;
+    font-size: 1em;
     padding-left: 10px;
     align-items: center;
 }
@@ -47,9 +48,68 @@ body{
 
 .header ul a{
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1em;
     color: white;
     text-align: right;
+}
+
+.header ul a:hover{
+    color: #94D3AC;
+}
+
+#landingFormat{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 40px;
+    grid-column-gap: 20px;
+    padding: 20px;
+    margin: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+#landingFormat img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+#landingTitle{
+    font-size: 4em;
+    margin: 0;
+    padding: 50px;
+    text-align: center;
+    background-color: #CCEDD2;
+}
+
+#landingFormat p{
+    font-size: 1.5em;
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+#registerLogIn{
+    display: flex;
+    width: calc(100vw - 21px);
+    justify-content: center;
+}
+
+#registerLogIn button{
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #655C56;
+    background-color: #655C56;
+    color: white;
+    font-size: 1.5em;
+    margin: 0 auto 50px auto;
+}
+
+#registerLogIn button:hover{
+    background-color: #94D3AC;
 }
 
 .loginBackground{
@@ -122,49 +182,232 @@ body{
 .loginBubble a:hover{
     color: #655C56;
 }
-#information{
-    margin-top: 20px;
-}
+
 #information h1{
     font-size: 3em;
-    margin-bottom: 20px;
-    padding: 0;
+    margin: 0;
+    padding: 30px;
+    text-align: center;
+    background-color: #fafffa;
+}
+
+#information p{
+    font-size: 1.5em;
+    margin: 0;
+    padding: 40px;
     text-align: center;
 }
 
 #navigation{
+    justify-content: center;
     justify-items: center;
     display: flex;
     margin: 0;
-    padding-top: 20px;;
     height: fit-content;
 }
 
 #navigation button{
     padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #655C56;
     color: white;
     font-size: 3em;
-    width: 33.3vw;
+    width: 32.33vw;
     height: 377px;
     background-size: cover;
+    background-position: center center;
+    transition: all 0.2s ease;
 }
 
 #navigation button:hover{
     opacity: 30%;
+    background-size: 120%;
 } 
 
 #myPets{
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/myPets.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('myPets.jpg');
 }
 
 #prescriptions{
-    background-image:  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/prescriptions.jpg');
+    background-image:  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('prescriptions.jpg');
 }
 
 #schedule{
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/images/schedule.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('schedule.jpg');
+}
+
+#homepageLayout{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    padding: 20px;
+}
+
+#profileView{
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 3;
+    display: grid;
+    padding: 20px;
+    text-align: center;
+    background-color: #a0e5ba;
+    border: #655C56 1px solid;
+}
+
+#profileView h2{
+    font-size: 2.5em;
+}
+
+#profileView p, button{
+    font-size: 1.5em;
+}
+
+#profileView *{
+    margin: 20px;
+}
+
+#profileView button{
+    justify-self: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #655C56;
+    background-color: #655C56;
+    color: white;
+    font-size: 1.2em;
+    width: 20%;
+}
+
+#profileView button:hover{
+    background-color: #94D3AC;
+}
+
+#urgentMessages{
+    grid-column: 3 / span 4;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #CCEDD2;
+    border: #655C56 1px solid;
+}
+
+#urgentMessages h2{
+    font-size: 2.5em;
+    margin: 20px;
+}
+
+#urgentMessages ul, li{
+    font-size: 1.2em;
+    list-style: none;
+    text-decoration: none;
+}
+
+#urgentMessages ul{
+    overflow-y: scroll;
+}
+
+#petListSmall{
+    grid-column: 1 / span 2;
+    grid-row: 4 / span 2;
+    display: grid;
+    text-align: center;
+    background-color: #CCEDD2;
+    border: #655C56 1px solid;
+}
+
+#petListSmall h2{
+    font-size: 2.5em;
+    margin: 20px;
+}
+
+#petListSmall a{
+    text-decoration: none;
+    font-size: 1.5em;
+    padding: 10px;
+    color: black;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+#petListSmall a:hover{
+    background-color: #CCEDD2;
+    border: #655C56 1px solid;
+}
+
+#Medications{
+    grid-column: 3 / span 4;
+    grid-row: 3 / span 3;
+    background-color: #e9ffe9;
+    padding: 20px;
+    border: #655C56 1px solid;
+}
+
+#prescriptionsSmall{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #d1f3d7;
+}
+
+#Medications h2{
+    font-size: 2.5em;
+    margin: 20px;
+}
+
+#Medications ul{
+    overflow-y: scroll;
+    list-style: none;
+}
+
+#Medications ul li{
+    text-decoration: none;
+}
+.petListTemplate{
+    margin: 0;
+    height: calc(100vh - 95px);
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+
+.petListTemplate img{
+    width: 100%;
+    height: calc(100vh - 95px);
+    object-fit: cover;
+}
+
+.petListFormat{
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    padding: 20px;
+}
+
+.petListFormat h2{
+    font-size: 3em;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.petList, .petList p{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    word-wrap: normal;
+    font-size: 1em;
+    align-items: center;
+}
+
+.petList a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: #CCEDD2;
 }
 
 .registerTemplate{
@@ -227,7 +470,7 @@ body{
     color: black;
     font-size: 1.2em;
 }
- 
+
 .profileTemplate{
     position: absolute;
     margin: 0;
@@ -294,7 +537,7 @@ body{
     justify-items: center;
 }
 
-#editPage {
+#editPage{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;

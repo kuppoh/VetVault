@@ -146,19 +146,15 @@ const databaseController = {
             res.status(500).send('Error getting pet');
         }
     },
-    getPetsbyUserID: async (req, res) => {
-            try {
-                const [rows] = await promiseUserPool.query('SELECT * FROM OWNERSHIP_INT JOIN PET ON OWNERSHIP_INT.PetID = PET.PetID WHERE OWNERSHIP_INT.UserID = ? ', [req.params.id]);
-                if (rows.length > 0) {
-                    res.render("pets/pets_index", {pets: rows, showNavbar: true});
-                } else {
-                    res.status(404).send('No pets found for this user');
-                }
-            } catch (error) {
-                console.error(error);
-                // res.status(500).send('Error getting pets');
-            }
-        },
+    getPetsbyUserID: async (req, res, next) => {
+        try {
+            const [pets] = await promiseUserPool.query("SELECT * FROM OWNERSHIP_INT JOIN PET ON OWNERSHIP_INT.PetID = PET.PetID WHERE OWNERSHIP_INT.UserID = ?", [req.user.id]);
+            req.pets = pets;
+            next();
+        } catch (error) {
+            next(error);
+        }
+    },
     checkIfEmailExists: async (email) => {
         const [rows] = await promiseUserPool.query('SELECT * FROM users WHERE email = ?', [email]);
         if (rows.length > 0) {

@@ -1,0 +1,12 @@
+<div id="information">
+  <h1>Welcome to VetVault, <%= name %>!</h1>
+  <p>Here you can manage your pet's health and wellness journey in collaboration with veterinary medical professionals. We are happy to offer a unique medical tracking, nutrition and prescription managment system to monitor your pet's diet and medication schedule, to ensure you're promoting your pet's <strong>healthy habits.</strong></p>
+  <p>Click on the buttons below to navigate through the website.</p>
+</div>
+<div id="navigation">
+  <a href="/prescriptions"><button id="prescriptions">Prescriptions</button></a>
+  <form method="GET" action=<%="/petIndex/" + userID %>>
+    <a href="/petIndex"><button id="myPets">My Pets</button></a>
+  </form>
+  <a href="/schedule"><button id="schedule">Schedule</button></a>
+</div>
