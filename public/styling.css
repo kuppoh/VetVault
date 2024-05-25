@@ -148,7 +148,7 @@ body{
     font-size: 3em;
     width: 33.3vw;
     height: 377px;
-
+    background-size: cover;
 }
 
 #navigation button:hover{
