@@ -1,0 +1,16 @@
+<div class="petListTemplate">
+  <img src="/images/petList.jpg" alt="petListImg">
+  <div class="petListFormat">
+    <h2>My Pets</h2>
+    <div class="petList">
+      <% pets.forEach(function(pet) { %>
+        <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
+          <a href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
+        </form>
+        <p>Age: <%- petAge%></p>
+        <p>Gender: <%- petGender%></p>
+        <p>Description: <%- pet.Description %></p>
+        <% }); %>
+    </div>
+  </div>
+</div>
