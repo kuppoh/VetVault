@@ -6,7 +6,7 @@ const { promiseUserPool } = require("../config/database");
 
 // Route to render the index page
 router.get("/", (req, res) => {
-    //res.send("Hello World!");
+  //res.send("Hello World!");
   res.render("login", { name: "Guest" });
 });
 
@@ -44,16 +44,32 @@ router.get("/myProfile", ensureAuthenticated, async (req, res) => {
   // console.log("Logged in user ID:", req.user.id)
   const [rows] = await promiseUserPool.query("SELECT * FROM users WHERE id = ?", [req.user.id])
   if (rows.length > 0) {
-      res.render("user/myProfile", 
-      {  
-        user: rows[0], 
-        showNavbar: true 
+    res.render("user/myProfile",
+      {
+        user: rows[0],
+        showNavbar: true
       });
   }
 });
 
-router.get("/schedule", ensureAuthenticated, (req, res) => {
-  res.render("user/schedule", { showNavbar: true });
+router.get("/schedule", ensureAuthenticated, async (req, res) => {
+  try {
+    const [rows] = await promiseUserPool.query(`
+  SELECT S.DateTime as start, S.Description as title
+  FROM SCHEDULE S
+  JOIN PET ON S.PetID = PET.PetID
+  JOIN OWNERSHIP_INT ON PET.PetID = OWNERSHIP_INT.PetID
+  WHERE OWNERSHIP_INT.UserID = ?
+`, [req.user.id]);
+
+    // res.json(rows);
+    res.render("user/schedule", {
+      schedule: rows,
+      userId: req.user.id,
+    });
+  } catch (error) {
+    console.error(error);
+  };
 });
 
 router.get("/prescriptions", ensureAuthenticated, async (req, res) => {
@@ -69,7 +85,7 @@ router.get("/prescriptions", ensureAuthenticated, async (req, res) => {
     WHERE O.UserID = ?
   `, userId);
 
-  res.render("user/prescriptions", { 
+  res.render("user/prescriptions", {
     showNavbar: true,
     prescriptions: rows
   });

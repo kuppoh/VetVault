@@ -57,6 +57,35 @@ io.on('connection', (socket) => {
   fetchAndEmitNotifications(); // Initial fetch
 });
 
+// for schedule
+io.on('connection', (socket) => {
+  let latestSchedules = {}; // Initialize latestSchedules to an empty object
+  const userId = socket.handshake.query.userId;
+
+  const pollSchedule = setInterval(async () => {
+    // Query the database for all schedules for the specified user
+    const [rows] = await promiseUserPool.query(
+      'SELECT * FROM users.SCHEDULE S ' +
+      'JOIN PET P ON S.PetID = P.PetID ' +
+      'JOIN OWNERSHIP_INT O ON P.PetID = O.PetID ' +
+      'WHERE O.UserID = ?',
+      [userId]
+    );
+
+    // For each schedule, if it's newer than the latest known schedule for the pet, emit a 'schedule_update' event
+    rows.forEach(row => {
+      if (!latestSchedules[row.PetID] || new Date(row.start) > new Date(latestSchedules[row.PetID].start)) {
+        latestSchedules[row.PetID] = row;
+        socket.emit(`schedule_update_${userId}`, row);
+      }
+    });
+  }, 300); // Poll every 300 milliseconds
+
+  socket.on('disconnect', () => {
+    clearInterval(pollSchedule);
+  });
+});
+
 app.use(
     session({
       secret: "secret",

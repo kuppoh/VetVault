@@ -11,6 +11,13 @@
       <li><%= notification.Description %></li>
     <% }) %>
   </ul>
+  <div style="overflow: scroll; background-color: blue; width: 500px; height: 100px;">
+    <ul id="notifications">
+      <% notifications.forEach(notification => { %>
+        <li><%= notification.Description %></li>
+      <% }) %>
+    </ul>
+  </div>
   
   <script src="/socket.io/socket.io.js"></script>
   <script>
