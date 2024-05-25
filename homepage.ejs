@@ -1,0 +1,47 @@
+<div id="information">
+  <h1>Welcome Back, <%= name %>!</h1>
+</div>
+<div id="navigation">
+  <a href="/prescriptions"><button id="prescriptions">Prescriptions</button></a>
+  <form method="GET" action=<%="/petIndex/" + userID %>
+    <a href="/petIndex"><button id="myPets">My Pets</button></a>
+  </form>
+  <a href="/schedule"><button id="schedule">Schedule</button></a>
+</div>
+<div id="homepageLayout">
+  <div id="profileView">
+      <h2>Profile</h2>
+      <p>Name: <%- name %></p>
+      <p>Email: <%- email %></p>
+      <p>Phone: <%- phone %></p>
+      <button id="editProfile">Edit</button>
+  </div>
+  <div id="urgentMessages"> 
+      <h2>Notifications</h2>
+      <ul class="notifications">
+      <% notifications.forEach(notification => { %>
+          <li><%= notification.Description %></li>
+      <% }) %>
+      </ul>
+  </div>
+  <div id="petListSmall">
+      <h2>My Pets</h2>
+          <% pets.forEach(function(pet) { %>
+              <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
+                  <a href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
+              </form>
+          <% }); %>
+  </div>
+  <div id="Medications">
+      <h2>Medications</h2>
+          <ul>
+          <% prescriptions.forEach(function(prescription) { %>
+              <li><div id="prescriptionsSmall">
+                  <h3>Pet Name: <%= prescription.Name %></h3>
+                  <p>Medication: <%= prescription.MedName %></p>
+                  <p>Description: <%= prescription.Description %></p>
+              </div></li>
+          <% }); %>
+          </ul>
+  </div>
+</div>
