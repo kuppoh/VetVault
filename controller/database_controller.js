@@ -148,11 +148,23 @@ const databaseController = {
     },
     getPetsbyUserID: async (req, res, next) => {
         try {
-            const [pets] = await promiseUserPool.query("SELECT * FROM OWNERSHIP_INT JOIN PET ON OWNERSHIP_INT.PetID = PET.PetID WHERE OWNERSHIP_INT.UserID = ?", [req.user.id]);
-            req.pets = pets;
-            next();
+            const userId = req.user.id;  // Assuming the user's ID is stored in req.user.id
+            const [rows] = await promiseUserPool.query(`
+                SELECT *
+                FROM PET P
+                JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID
+                WHERE OI.UserID = ?
+                `, userId);
+            
+            if (rows.length > 0) {
+                req.pets = rows;
+                next();
+            } else {
+                res.status(404).send('No pets found for this user');
+            }
         } catch (error) {
-            next(error);
+            console.error(error);
+            res.status(500).send('Error getting pets');
         }
     },
     checkIfEmailExists: async (email) => {

@@ -1,40 +1,98 @@
 <div id="prescriptionList">
+
   <h1>Prescriptions</h1>
+  <form id="searchForm">
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <i class="fas fa-search"></i> <!-- This is a magnifying glass icon -->
+  </div>
+  </form>
+
+  <div id="sortWrap">
+    <select id="sortOptions">
+      <option value="reset">Sort By: Select Option</option>
+      <option value="nameAsc">Sort by: Name (A-Z)</option>
+      <option value="nameDesc">Sort by: Name (Z-A)</option>
+      <option value="dateAsc">Sort by: Date (Oldest-Newest)</option>
+      <option value="dateDesc">Sort by: Date (Newest-Oldest)</option>
+    </select>
+
+  </div>
+
+
   <% prescriptions.forEach(function(prescription) { %>
-    <div class="prescription">
-      <h2>Pet Name: <%= prescription.Name %></h2>
-      <p>Medication: <%= prescription.MedName %></p>
-      <p>Medication Date: <%= prescription.DateTime %></p>
-      <p>Description: <%= prescription.Description %></p>
-      <p>Medication Portions: <%= prescription.Portion %></p>
-      <p>Mediation Rates: <%= prescription.Rate %></p>
+    <div class="prescriptionWrap">
+      <div class="prescription">
+        <div class="p_child1">
+          <%= prescription.Name %>
+        </div>
+        <div class="p_child2">Medication: <%= prescription.MedName %>
+        </div>
+        <div class="p_child3">Description: <%= prescription.Description %>
+        </div>
+        <div class="p_child4">Portion: <%= prescription.Portion %>
+        </div>
+        <div class="p_child5">Rate: <%= prescription.Rate %>
+        </div>
+        <div class="p_child6">Administered Date: <%= prescription.DateTime %>
+        </div>
+      </div>
     </div>
 
-    <button id="edit">Edit <%= prescription.Name %>'s treatment</button>
-    <div id="content" style="display:none">
-      <form action="/prescriptions" method="POST">
-        <div>
-          <p>Current Medication: <%- prescription.MedName %></p>
-          <label for="medName">Edit Med Name:</label>
-          <input type="text" id="medName" name="medName" placeholder="Enter Med Name">
-        </div>
-        <div>
-          <input type="submit" value="Save">
-        </div>
-      </form>
-    </div>
+    <% }); %>
+</div>
 
-  <% }); %>
-  <script>
-    document.getElementById("edit").onclick = function () {
-        var theDiv = document.getElementById("content");
-        if (theDiv.style.display == 'none') {
-            theDiv.style.display = 'block';
-            this.innerHTML = 'Close';
-        } else {
-            theDiv.style.display = 'none';
-            this.innerHTML = 'Show';
-        }
-    }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Store the original order of the .prescriptionWrap elements
+    var originalOrder = $('.prescriptionWrap').toArray();
+
+    // Search 
+    $('#searchInput').on('keyup', function () {
+      var value = $(this).val().toLowerCase(); 
+      $('.prescriptionWrap').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+
+    // Sort  
+    $('#sortOptions').on('change', function () {
+      var sortOption = $(this).val();
+      var sortedItems;
+
+      switch (sortOption) {
+        case 'reset':
+          // resests order to original 
+          sortedItems = originalOrder;
+          break;
+        case 'nameAsc': // ascending order
+          sortedItems = $('.prescriptionWrap').sort(function (a, b) {
+            return $(a).find('.p_child1').text() > $(b).find('.p_child1').text() ? 1 : -1;
+          });
+          break; 
+        case 'nameDesc': // descending order 
+          sortedItems = $('.prescriptionWrap').sort(function (a, b) {
+            return $(a).find('.p_child1').text() < $(b).find('.p_child1').text() ? 1 : -1;
+          });
+          break;
+        case 'dateAsc': // ascending order
+          sortedItems = $('.prescriptionWrap').sort(function (a, b) {
+            var dateA = new Date($(a).find('.p_child6').text().replace('Administered Date: ', ''));
+            var dateB = new Date($(b).find('.p_child6').text().replace('Administered Date: ', ''));
+            return dateA > dateB ? 1 : -1;
+          });
+          break;
+        case 'dateDesc': // descending order 
+          sortedItems = $('.prescriptionWrap').sort(function (a, b) {
+            var dateA = new Date($(a).find('.p_child6').text().replace('Administered Date: ', ''));
+            var dateB = new Date($(b).find('.p_child6').text().replace('Administered Date: ', ''));
+            return dateA < dateB ? 1 : -1;
+          });
+          break;
+      }
+
+      $('#prescriptionList').append(sortedItems);
+    });
+  });
 </script>
-</div>  

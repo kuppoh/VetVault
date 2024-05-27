@@ -1,13 +1,17 @@
-<div id="petList">
-    <!-- <p1>Enter pet ID:</p1>
-    <input type="text" id="input"></input> --> 
-    
-    <!-- ^ for admin view -->
-
-
+<div class="petListTemplate">
+  <img src="/images/petList.jpg" alt="petListImg">
+  <div class="petListFormat">
+    <h2>My Pets</h2>
     <% pets.forEach(function(pet) { %>
+      <div class="petList">
         <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
-            <a href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
+          <a class="list_c1" href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
         </form>
-    <% }); %>
+        <div class="list_c2">Age: <%- pet.age%></div>
+        <div class="list_c3">Sex: <%- pet.Gender%></div>
+        <div class="list_c4">Description: <%- pet.Description %></div>
+      </div>
+
+      <% }); %>
+  </div>
 </div>

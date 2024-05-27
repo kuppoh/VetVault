@@ -5,7 +5,7 @@ const { ensureAuthenticated } = require("../middleware/checkAuth");
 
 const databaseController = require("../controller/database_controller");
 
-router.get('/petIndex/:id', ensureAuthenticated, databaseController.getPetsbyUserID , (req, res) => {
+router.get('/petIndex/:id', ensureAuthenticated, databaseController.getPetsbyUserID, (req, res) => {
   res.render('pets/pets_index', {pets: req.pets});
 });
 
