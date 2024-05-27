@@ -1,5 +1,4 @@
-
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -9,31 +8,31 @@ body{
     background-color: #fafffa;
 }
 
-.header{
+.header {
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    color:white;
+    color: white;
     margin: 0;
     background-color: #655C56;
     padding: 10px;
 }
 
-.header div{
+.header div {
     display: flex;
     font-size: 1em;
     padding-left: 10px;
     align-items: center;
 }
 
-.header div h1{
+.header div h1 {
     font-size: 3em;
     padding-left: 10px;
     margin: 0;
 }
 
-.header ul{
+.header ul {
     list-style: none;
     display: flex;
     justify-content: end;
@@ -42,22 +41,22 @@ body{
     white-space: nowrap;
 }
 
-.header ul li{
+.header ul li {
     padding: 20px;
 }
 
-.header ul a{
+.header ul a {
     text-decoration: none;
     font-size: 1em;
     color: white;
     text-align: right;
 }
 
-.header ul a:hover{
+.header ul a:hover {
     color: #94D3AC;
 }
 
-#landingFormat{
+#landingFormat {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -69,14 +68,14 @@ body{
     justify-content: center;
 }
 
-#landingFormat img{
+#landingFormat img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 
 }
 
-#landingTitle{
+#landingTitle {
     font-size: 4em;
     margin: 0;
     padding: 50px;
@@ -84,7 +83,7 @@ body{
     background-color: #CCEDD2;
 }
 
-#landingFormat p{
+#landingFormat p {
     font-size: 1.5em;
     margin: 0;
     padding: 40px;
@@ -92,13 +91,13 @@ body{
     line-height: 40px;
 }
 
-#registerLogIn{
+#registerLogIn {
     display: flex;
     width: calc(100vw - 21px);
     justify-content: center;
 }
 
-#registerLogIn button{
+#registerLogIn button {
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #655C56;
@@ -108,12 +107,12 @@ body{
     margin: 0 auto 50px auto;
 }
 
-#registerLogIn button:hover{
+#registerLogIn button:hover {
     background-color: #94D3AC;
 }
 
-.loginBackground{
-    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.9)), url('/images/loginBackground.jpg');
+.loginBackground {
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url('/images/loginBackground.jpg');
     background-size: cover;
     margin: 0;
     height: calc(100vh - 95px);
@@ -123,7 +122,7 @@ body{
     align-items: center;
 }
 
-.loginBubble{
+.loginBubble {
     margin: auto;
     background-color: #CCEDD2c1;
     width: 75%;
@@ -137,7 +136,7 @@ body{
     justify-content: center;
 }
 
-.loginBubble h2{
+.loginBubble h2 {
     margin: 0;
     padding: 0;
     font-size: 2em;
@@ -145,19 +144,19 @@ body{
     align-self: center;
 }
 
-.loginBubble form{
+.loginBubble form {
     display: flex;
     flex-direction: column;
 }
 
-.loginBubble form input{
+.loginBubble form input {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
     margin: 10px;
 }
 
-.loginBubble form button{
+.loginBubble form button {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
@@ -167,11 +166,12 @@ body{
     font-size: 1.2em;
 }
 
-.loginBubble form button:hover{
+.loginBubble form button:hover {
     background-color: #94D3AC;
 }
 
-.loginBubble a, p{
+.loginBubble a,
+p {
     text-decoration: none;
     text-align: center;
     color: black;
@@ -179,11 +179,11 @@ body{
     margin: 0;
 }
 
-.loginBubble a:hover{
+.loginBubble a:hover {
     color: #655C56;
 }
 
-#information h1{
+#information h1 {
     font-size: 3em;
     margin: 0;
     padding: 30px;
@@ -191,14 +191,14 @@ body{
     background-color: #fafffa;
 }
 
-#information p{
+#information p {
     font-size: 1.5em;
     margin: 0;
     padding: 40px;
     text-align: center;
 }
 
-#navigation{
+#navigation {
     justify-content: center;
     justify-items: center;
     display: flex;
@@ -206,7 +206,7 @@ body{
     height: fit-content;
 }
 
-#navigation button{
+#navigation button {
     padding: 10px;
     color: white;
     font-size: 3em;
@@ -217,24 +217,24 @@ body{
     transition: all 0.2s ease;
 }
 
-#navigation button:hover{
+#navigation button:hover {
     opacity: 30%;
     background-size: 120%;
-} 
-
-#myPets{
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('myPets.jpg');
 }
 
-#prescriptions{
-    background-image:  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('prescriptions.jpg');
+#myPets {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/myPets.jpg');
 }
 
-#schedule{
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('schedule.jpg');
+#prescriptions {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/prescriptions.jpg');
 }
 
-#homepageLayout{
+#schedule {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/schedule.jpg');
+}
+
+#homepageLayout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -243,7 +243,7 @@ body{
     padding: 20px;
 }
 
-#profileView{
+#profileView {
     grid-column: 1 / span 2;
     grid-row: 1 / span 3;
     display: grid;
@@ -253,19 +253,20 @@ body{
     border: #655C56 1px solid;
 }
 
-#profileView h2{
+#profileView h2 {
     font-size: 2.5em;
 }
 
-#profileView p, button{
+#profileView p,
+button {
     font-size: 1.5em;
 }
 
-#profileView *{
+#profileView * {
     margin: 20px;
 }
 
-#profileView button{
+#profileView button {
     justify-self: center;
     padding: 10px;
     border-radius: 10px;
@@ -276,11 +277,11 @@ body{
     width: 20%;
 }
 
-#profileView button:hover{
+#profileView button:hover {
     background-color: #94D3AC;
 }
 
-#urgentMessages{
+#urgentMessages {
     grid-column: 3 / span 4;
     grid-row: 1 / span 2;
     display: flex;
@@ -290,22 +291,23 @@ body{
     border: #655C56 1px solid;
 }
 
-#urgentMessages h2{
+#urgentMessages h2 {
     font-size: 2.5em;
     margin: 20px;
 }
 
-#urgentMessages ul, li{
+#urgentMessages ul,
+li {
     font-size: 1.2em;
     list-style: none;
     text-decoration: none;
 }
 
-#urgentMessages ul{
+#urgentMessages ul {
     overflow-y: scroll;
 }
 
-#petListSmall{
+#petListSmall {
     grid-column: 1 / span 2;
     grid-row: 4 / span 2;
     display: grid;
@@ -314,12 +316,12 @@ body{
     border: #655C56 1px solid;
 }
 
-#petListSmall h2{
+#petListSmall h2 {
     font-size: 2.5em;
     margin: 20px;
 }
 
-#petListSmall a{
+#petListSmall a {
     text-decoration: none;
     font-size: 1.5em;
     padding: 10px;
@@ -328,12 +330,12 @@ body{
     margin-bottom: 5px;
 }
 
-#petListSmall a:hover{
+#petListSmall a:hover {
     background-color: #CCEDD2;
     border: #655C56 1px solid;
 }
 
-#Medications{
+#Medications {
     grid-column: 3 / span 4;
     grid-row: 3 / span 3;
     background-color: #e9ffe9;
@@ -341,7 +343,7 @@ body{
     border: #655C56 1px solid;
 }
 
-#prescriptionsSmall{
+#prescriptionsSmall {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
@@ -350,20 +352,21 @@ body{
     background-color: #d1f3d7;
 }
 
-#Medications h2{
+#Medications h2 {
     font-size: 2.5em;
     margin: 20px;
 }
 
-#Medications ul{
+#Medications ul {
     overflow-y: scroll;
     list-style: none;
 }
 
-#Medications ul li{
+#Medications ul li {
     text-decoration: none;
 }
-.petListTemplate{
+
+.petListTemplate {
     margin: 0;
     height: calc(100vh - 95px);
     display: grid;
@@ -371,20 +374,20 @@ body{
     align-items: center;
 }
 
-.petListTemplate img{
+.petListTemplate img {
     width: 100%;
     height: calc(100vh - 95px);
     object-fit: cover;
 }
 
-.petListFormat{
+.petListFormat {
     margin: auto;
     width: 80%;
     height: 80%;
     padding: 20px;
 }
 
-.petListFormat h2{
+.petListFormat h2 {
     font-size: 3em;
     margin-top: 0;
     margin-bottom: 40px;
@@ -415,9 +418,10 @@ body{
 
 .list_c4 {
     grid-area: 1 / 4 / 2 /6;
-    
+
 }
-.petList a{
+
+.petList a {
     text-decoration: none;
     font-weight: bold;
     font-size: 1em;
@@ -428,7 +432,7 @@ body{
     background-color: #CCEDD2;
 }
 
-.registerTemplate{
+.registerTemplate {
     margin: 0;
     height: calc(100vh - 95px);
     display: grid;
@@ -436,14 +440,14 @@ body{
     align-items: center;
 }
 
-.registerTemplate img{
+.registerTemplate img {
     width: 100%;
     height: calc(100vh - 95px);
     object-fit: cover;
 }
 
 
-.registerField{
+.registerField {
     margin: auto;
     width: 80%;
     height: 80%;
@@ -455,7 +459,7 @@ body{
 
 }
 
-.registerField h2{
+.registerField h2 {
     margin: 0;
     padding: 0;
     font-size: 2em;
@@ -463,7 +467,7 @@ body{
     align-self: center;
 }
 
-.registerField form{
+.registerField form {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -471,7 +475,7 @@ body{
     width: 140%;
 }
 
-.registerField form input{
+.registerField form input {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
@@ -479,7 +483,7 @@ body{
     margin-top: 10px;
 }
 
-.registerField form button{
+.registerField form button {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #94D3AC;
@@ -489,19 +493,24 @@ body{
     font-size: 1.2em;
 }
 
-.profileTemplate{
+.profileTemplate {
     position: absolute;
     margin: 0;
     padding: 0;
     bottom: 0;
     top: 100px;
-    display: grid;
-    grid-template-columns: 40% 60%;
     justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
 }
 
-.profileDetails{
+.profileDetails {
     align-self: center;
+    grid-area: 1 / 1 / 6 / 3;
+    position: relative;
     margin: auto;
     width: 80%;
     height: 80%;
@@ -510,43 +519,158 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
+    border: 2px solid #f1f1f1;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
 }
 
-.profileDetails h2{
+.profileDetails h2 {
     font-size: 3em;
     margin-top: 0;
 }
 
-.two-column-layout{
+.profile-layout {
+    font-size: 1em;
+}
+
+#petDetails {
+    margin-top: 30px;
+}
+
+#petDetails {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-column-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
 }
 
-.two-column-layout p{
-    font-size: 2em;
+/* .pd1, .pd2, .pd3, .pd4, .pd5, .pd6 {
+    margin-bottom: -15px;
+    margin-top: -15px;  
+} */
+
+.pd1 { grid-area: 1 / 1 / 2 / 5; }
+.pd2 { grid-area: 2 / 1 / 3 / 3; }
+.pd3 { grid-area: 2 / 3 / 3 / 5; }
+.pd4 { grid-area: 3 / 1 / 4 / 5; }
+.pd5 { grid-area: 4 / 1 / 5 / 5; }
+.pd6 { grid-area: 5 / 1 / 6 / 5; } 
+.pd7 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
 }
 
-.petMedicalInfo{
+.pd7>form>input{
+    border-radius: 15px;
+    background-color: #94D3AC;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f1f1f1;
+    padding: 5px;
+    width: 85px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+    font-size: 1em;
+}
+
+.pd7>form>input:hover{
+    background-color: #655C56;
+    color: white;
+}
+
+#petDetails>div>p {
+    border-style: solid;
+    border-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    border-width: 2px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: white;
     display: flex;
+    justify-content: left;
+    text-align: left;
+}
+
+.petCategory {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+#petButtons {
+    grid-area: 1 / 3 / 2 / 6;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+
+#generalInfoButton.selected, #medicationsButton.selected {
+    background-color: #655C56;
+    color: white;
+}
+
+#generalInfoButton {
+    height: 45px;
+    width: 45%;
+    border-radius: 20px;
+    border-style: solid;
+    font-size: 1em;
+    background-color: #94D3AC;
+    border-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+
+}
+
+#medicationsButton {
+    height: 45px;
+    width: 45%;
+    border-radius: 20px;
+    border-style: solid;
+    font-size: 1em;
+    background-color: #94D3AC;
+    border-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+}
+
+#medicationsButton:hover {
+    background-color: #655C56;
+    color: white;
+}
+
+#generalInfoButton:hover {
+    background-color: #655C56;
+    color: white;
+}
+
+#wholeInfo {
+    grid-area: 2 / 3 / 6 / 6;
+}
+
+.petMedicalInfo {
+    display: none;
     flex-direction: column;
     margin: 60px;
 }
 
-.petMedicalInfo h2{
+.petMedicalInfo h2 {
     font-size: 3em;
     font-weight: normal;
 }
 
-.petMedicalInfo p{
+.petMedicalInfo p {
     font-size: 1.5em;
 }
 
-.petMedicalInfo div{
+.petMedicalInfo div {
     background-color: #CCEDD2;
     display: grid;
-    width:auto;
+    width: auto;
     grid-template-columns: 1fr 1fr 1fr;
     flex-wrap: wrap;
     column-gap: 20px;
@@ -555,7 +679,7 @@ body{
     justify-items: center;
 }
 
-#editPage{
+#editPage {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
@@ -564,7 +688,7 @@ body{
     width: calc(100vw - 40px);
 }
 
-.editPetInfo{
+.editPetInfo {
     margin: auto;
     width: 80%;
     height: 80%;
@@ -575,12 +699,12 @@ body{
     margin: 60px;
 }
 
-.editPetInfo h2{
+.editPetInfo h2 {
     font-size: 3em;
     margin-top: 0;
 }
 
-.editPetInfo form{
+.editPetInfo form {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -589,24 +713,24 @@ body{
 
 }
 
-.editPetInfo *{
+.editPetInfo * {
     margin: 10px;
     font-size: 15px;
 }
 
-.editPetInfo form input{
+.editPetInfo form input {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
 }
 
-.editPetInfo form select{
+.editPetInfo form select {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
 }
 
-.editPetInfo form button{
+.editPetInfo form button {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
@@ -615,17 +739,17 @@ body{
     font-size: 1.2em;
 }
 
-#scheduleBlock{
+#scheduleBlock {
     display: flex;
     flex-direction: column;
 }
 
-#scheduleBlock h1{
+#scheduleBlock h1 {
     font-size: 3em;
     text-align: center;
 }
 
-#scheduleBlock iframe{
+#scheduleBlock iframe {
     align-self: center;
 }
 
@@ -637,10 +761,11 @@ body{
     grid-row-gap: 5px;
     grid-column-gap: 20px;
     margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
     margin-bottom: 25px;
     border-radius: 20px;
-    border-color: #655C56;
-    border-width: 5px;
+    border-color: #f1f1f1;
+    border-width: 2px;
     border-style: solid;
     padding: 20px;
     width: 80%;
@@ -653,45 +778,51 @@ body{
     margin: auto;
 }
 
-.p_child1 { 
-    grid-area: 1 / 1 / 6 / 3; 
-    background-color: #CCEDD2;
+.p_child1 {
+    grid-area: 1 / 1 / 6 / 3;
+    background-color: #94D3AC;
     border-radius: 10px;
     text-align: center;
     font-size: 1.5em;
     font-weight: bold;
 }
-.p_child2 { 
-    grid-area: 1 / 3 / 2 / 5; 
+
+.p_child2 {
+    grid-area: 1 / 3 / 2 / 5;
     font-weight: bold;
     font-size: 1.5em;
-    background-color: #CCEDD2;
+    background-color: #94D3AC;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.p_child3 { 
-    grid-area: 2 / 3 / 4 / 5; 
+
+.p_child3 {
+    grid-area: 2 / 3 / 4 / 5;
     font-size: 1.2em;
     display: flex;
     align-items: center;
 }
-.p_child4 { grid-area: 4 / 3 / 5 / 4; 
+
+.p_child4 {
+    grid-area: 4 / 3 / 5 / 4;
     font-size: 1.2em;
 }
-.p_child5 { 
-    grid-area: 4 / 4 / 5 / 5; 
+
+.p_child5 {
+    grid-area: 4 / 4 / 5 / 5;
     font-size: 1.2em;
 }
-.p_child6 { 
-    grid-area: 5 / 3 / 6 / 5; 
+
+.p_child6 {
+    grid-area: 5 / 3 / 6 / 5;
     font-size: 1em;
     color: #8f8c8c;
     font-style: italic;
-} 
+}
 
-#edit{
+#edit {
     margin: 20px;
     font-size: 1em;
     padding: 10px;
@@ -726,7 +857,7 @@ body{
     text-align: center;
 }
 
-#prescriptionList>#searchForm>input[type="text"]{
+#prescriptionList>#searchForm>input[type="text"] {
     width: 40%;
     height: 30px;
     border-radius: 25px;

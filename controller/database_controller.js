@@ -122,6 +122,13 @@ const databaseController = {
     getPetbyID: async (req, res, next) => {
         try {
             const petId = req.params.id;
+
+            const [petInfo] = await promiseUserPool.query('SELECT * FROM Pet_View WHERE PetID = ?', petId);
+
+            if (petInfo.length > 0) {
+                req.petInfo = petInfo[0];
+            }
+
             const [rows] = await promiseUserPool.query(`
                 SELECT P.*, PMI.Portion, PMI.Rate, PMI.Date as pmiDate, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName
                 FROM PET P
@@ -149,6 +156,7 @@ const databaseController = {
     getPetsbyUserID: async (req, res, next) => {
         try {
             const userId = req.user.id;  // Assuming the user's ID is stored in req.user.id
+
             const [rows] = await promiseUserPool.query(`
                 SELECT *
                 FROM PET P
@@ -200,6 +208,29 @@ const databaseController = {
                 console.error(err);
                 res.status(500).send('Error getting weight check');
             }
+    },
+    getRemindersforPet: async (req, res, next) => {
+        try {
+            const petId = req.params.id;
+
+            const [messagesRows] = await promiseUserPool.query('SELECT * FROM Urgent_list WHERE PetID = ?', petId);
+
+            if (messagesRows.length > 0) {
+                req.messages = messagesRows;
+            }
+            
+            const [rows] = await promiseUserPool.query('SELECT * FROM Reminder_List WHERE PetID = ?', petId);
+
+            if (rows.length > 0) {
+                req.reminders = rows;
+                next();
+            } else {
+                res.status(404).send('No reminders found for this pet');
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error getting reminders');
+        }
     }
 };
 

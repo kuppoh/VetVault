@@ -1,40 +1,117 @@
 <div class="profileTemplate">
   <div class="profileDetails">
-    <h2>Pet Profile</h2>
     <!-- IMAGE SELECTION HERE -->
-    <div class="two-column-layout">
-      <p>Name: <%- pet.Name %></p>
-      <p>Age: <%- pet.petAge%></p>
-      <p>Gender: <%- pet.Gender %></p>
-      <p>Breed: <%- pet.Breed %></p>
-      <p>Birthdate: <%- pet.BirthDate %></p>
-      <p>Description: <%- pet.Description %></p>
-      <p>Owner: <%- pet.UserName %></p>
-      <form action="/petProfile/<%-pet.PetID %>/edit" method="get">
-        <input type="submit" value="Edit Pet">
-      </form>
+    <div class="profile-layout">
+      <p id="petImage">image here:</p>
+      <p style="font-weight: bold; font-size: 2em;"><%- pet.Name %></p>
+      <div id="petDetails">
+        <div class="pd1">
+          <div class="petCategory">Owner</div>
+          <p><%- pet.UserName %></p>
+        </div>
+        <div class="pd2">
+          <div class="petCategory">Age</div>
+          <p style="margin-right: 15px;"><%- petInfo.Pet_Age %></p>
+        </div>
+        <div class="pd3">
+          <div class="petCategory">Sex</div>
+          <p><%- pet.Gender %></p>
+        </div>
+        <div class="pd4">
+          <div class="petCategory">Breed</div>
+          <p><%- pet.Breed %></p>
+        </div>
+        <div class="pd5">
+          <div class="petCategory">Date of Birth</div>
+          <p><%- pet.BirthDate %></p>
+        </div>
+        <div class="pd6">
+          <div class="petCategory">Description</div>
+          <p><%- pet.Description %></p>
+        </div>
+      </div>
+      <div class="pd7">
+        <form action="/petProfile/<%-pet.PetID %>/edit" method="get">
+          <i class="fas fa-edit"></i>
+          <input type="submit" value="Edit Pet">
+        </form>
+      </div>
     </div>
   </div>
-  <div class="petMedicalInfo">
-    <h2>Conditions</h2>
-    <div>
-      <p>Name: <%- pet.BodyPart %></p>
-      <p>Symptom: <%- pet.Symptom %> </p>
-      <p>Treatment: <%- pet.MedName %></p>
-    </div>
-    <h2>Medications</h2>
-    <div>
-      <p>Name: <%- pet.MedName %></p>
-      <p>For: <%- pet.BodyPart %></p>
-      <p>Dosage: <%- pet.Portion %></p>
-      <p>Frequency: <%- pet.Rate %></p>
-      <p>Administered on: <%- pet.pmiDate %></p>
-    </div>
-    <h2>Weight Check</h2>
-    <div>
-      <p>Current Weight: <%- latestWeight %>lbs</p>
-      <p>Previous Measurement: <%- previousWeight %>lbs</p>
-      <p>Measurement Date: <%- previousWeightDate %></p>
-    </div>
+
+  <div id="petButtons">
+    <button id="generalInfoButton">General Info</button>
+    <button id="medicationsButton">Medications</button>
   </div>
+
+  <div id="wholeInfo">
+    <div id="general_info">
+      <h2>Conditions</h2>
+      <div>
+        <p>Name: <%- pet.BodyPart %></p>
+        <p>Symptom: <%- pet.Symptom %> </p>
+        <p>Treatment: <%- pet.MedName %></p>
+      </div>
+      <h2>Weight Check</h2>
+      <div>
+        <p>Current Weight: <%- latestWeight %>lbs</p>
+        <p>Previous Measurement: <%- previousWeight %>lbs</p>
+        <p>Measurement Date: <%- previousWeightDate %></p>
+      </div>
+
+      <h2>Reminders</h2>
+      <ul>
+        <% reminders.forEach(function(reminder) { %>
+          <li><%- reminder.ScheduleTime %> FOR <%- reminder.Description %></li>
+          <% }); %>
+      </ul>
+
+      <h2>Messages</h2>
+      <ul>
+        <% messages.forEach(function(message) { %>
+          <li><%- message.Urgent_Message %></li>
+          <% }); %>
+      </ul>
+    </div>
+
+    <div class="petMedicalInfo">
+      <h2>Medications</h2>
+      <div>
+        <p>Name: <%- pet.MedName %></p>
+        <p>For: <%- pet.BodyPart %></p>
+        <p>Dosage: <%- pet.Portion %></p>
+        <p>Frequency: <%- pet.Rate %></p>
+        <p>Administered on: <%- pet.pmiDate %></p>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+ $(document).ready(function () {
+    // Add the 'selected' class to the #generalInfoButton when the page loads
+    $("#generalInfoButton").addClass('selected');
+
+    $("#generalInfoButton").click(function () {
+        $("#general_info").show();
+        $(".petMedicalInfo").hide();
+        // Add the 'selected' class to the clicked button and remove it from the other button
+        $(this).addClass('selected');
+        $("#medicationsButton").removeClass('selected');
+    });
+
+    $("#medicationsButton").click(function () {
+        $("#general_info").hide();
+        $(".petMedicalInfo").show();
+        // Add the 'selected' class to the clicked button and remove it from the other button
+        $(this).addClass('selected');
+        $("#generalInfoButton").removeClass('selected');
+    });
+});
+
+</script>
