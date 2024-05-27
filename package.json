@@ -32,6 +32,6 @@
     "test": "mocha --exit",
     "coverage": "c8 --check-coverage --lines 10 npm test",
     "start": "nodemon server.js",
-    "ci": "start-server-and-test start http://localhost:3000 coverage"
+    "server-test": "start-server-and-test start http://localhost:3000 coverage"
   }
 }
