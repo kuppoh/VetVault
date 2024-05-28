@@ -5,12 +5,13 @@ const databaseController = {
             Name: req.body.name,
             Birthdate: req.body.birthdate,
             Gender: req.body.gender,
-            Specie: req.body.specie,
+            Specie: req.body.species,
             Breed: req.body.breed,
             Description: req.body.description
         };
         try {
             await promiseUserPool.query('INSERT INTO PET SET ?', pet);
+            await promiseUserPool.query("INSERT INTO OWNERSHIP_INT (UserID, PetID, AuthorityID) VALUES (?, (SELECT PetID FROM PET WHERE Name = ?), 'A001')", [req.user.id, pet.Name]);
             res.redirect('/petIndex');
         } catch (error) {
             console.error(error);
@@ -145,6 +146,8 @@ const databaseController = {
     
             if (rows.length > 0) {
                 req.pet = rows[0];
+                
+
                 next();
             } else {
                 res.status(404).send('Pet not found');
@@ -169,7 +172,8 @@ const databaseController = {
                 req.pets = rows;
                 next();
             } else {
-                res.status(404).send('No pets found for this user');
+                req.pets = [];
+                next();
             }
         } catch (error) {
             console.error(error);
