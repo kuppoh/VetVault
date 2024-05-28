@@ -583,7 +583,7 @@ li {
     margin: 20px;
 }
 
-.pd7>form>input {
+.pd7>button {
     border-radius: 15px;
     background-color: #94D3AC;
     border-style: solid;
@@ -595,7 +595,7 @@ li {
     font-size: 1em;
 }
 
-.pd7>form>input:hover {
+.pd7>button:hover {
     background-color: #655C56;
     color: white;
 }
@@ -778,15 +778,18 @@ li {
     width: calc(100vw - 40px);
 }
 
+#editPetForm {
+    display: none;
+}
+
 .editPetInfo {
-    margin: auto;
-    width: 80%;
-    height: 80%;
-    padding: 20px;
     justify-content: center;
-    display: flex;
+    display: none;
     flex-direction: column;
-    margin: 60px;
+    height: 100%;
+    width: 95%;
+    padding: 20px;
+    margin-top: -12%;
 }
 
 .editPetInfo h2 {

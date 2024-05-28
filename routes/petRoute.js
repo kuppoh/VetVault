@@ -48,7 +48,7 @@ router.post('/petProfile/:id', ensureAuthenticated, databaseController.editPet);
 
 // editing pets
 router.get('/petProfile/:id/edit', ensureAuthenticated, databaseController.getPetbyID, (req, res) => {
-  res.render('pets/pet_edit', {pet: req.pet});
+  res.render('pets/pet_edit', {pet: req.pet, petInfo: req.petInfo});
 });
 
 router.post('/petProfile/:id/edit', ensureAuthenticated, databaseController.editPet);

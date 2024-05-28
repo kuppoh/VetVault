@@ -1,8 +1,8 @@
 <div class="profileTemplate" id="editPage">
-    <div class="profileDetails">
+    <div class="profile-layout">
         <h2>Pet Profile</h2>
         <!-- IMAGE SELECTION HERE -->
-        <div class="two-column-layout">
+        <div class="profileDetails">
             <p>Name: <%- pet.Name %></p>
             <p>Age: <%- pet.age %></p>
             <p>Gender: <%- pet.Gender %></p>
@@ -15,6 +15,7 @@
             <input type="submit" value="Cancel">
         </form>
     </div>
+    
     <div class="editPetInfo">
         <h2>Edit Pet Information</h2>
         <form action="/petProfile/<%-pet.PetID%>/edit" method="post">

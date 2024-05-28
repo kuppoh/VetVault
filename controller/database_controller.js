@@ -33,7 +33,7 @@ const databaseController = {
         let WeightDate = req.body.weightDate;
         let UserName = req.body.userName;
         let petId = req.params.id;
-
+        
         try {
             const [rows] = await promiseUserPool.query("SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName FROM PET P LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID LEFT JOIN users U ON OI.UserID = U.ID WHERE P.PetID = ?", [petId]);
             const currentInfo = rows[0];
@@ -90,12 +90,13 @@ const databaseController = {
             LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID
             LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID
             LEFT JOIN users ON OI.UserID = users.id
+            LEFT JOIN users U ON OI.UserID = U.ID
             SET P.Name = ?,
                 P.Gender = ?,
                 P.BirthDate = ?,
                 P.Breed = ?,
                 P.Description = ?,
-                users.name = ?
+                U.name = ?
             WHERE P.PetID = ?
         `, [Name, Gender, BirthDate, Breed, Description, UserName, petId]);
             
