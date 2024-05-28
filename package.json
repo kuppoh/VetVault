@@ -9,6 +9,7 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-ejs-layouts": "^2.5.1",
+    "express-mysql-session": "^3.0.2",
     "express-passport": "^0.1.0",
     "express-session": "^1.18.0",
     "mocha": "^10.4.0",
@@ -16,6 +17,7 @@
     "mysql2": "^3.9.7",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "pg": "^8.11.5",
     "socket.io": "^4.7.5",
     "supertest-session": "^5.0.1"
@@ -31,7 +33,13 @@
   "scripts": {
     "test": "mocha --exit",
     "coverage": "c8 --check-coverage --lines 10 npm test",
-    "start": "nodemon server.js",
-    "server-test": "start-server-and-test start http://localhost:3000 coverage"
-  }
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "server-test": "start-server-and-test dev http://localhost:3000 coverage"
+  },
+  
+    "engines": {
+      "npm": "10.8.0"
+    }
+  
 }
