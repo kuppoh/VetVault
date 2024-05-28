@@ -231,6 +231,23 @@ const databaseController = {
             console.error(error);
             res.status(500).send('Error getting reminders');
         }
+    },
+    getPrescriptionsForPet: async (req, res, next) => {
+        try {
+            const petId = req.params.id;
+
+            const [rows] = await promiseUserPool.query('SELECT * FROM Prescription_Page WHERE PetID = ?', petId);
+
+            if (rows.length > 0) {
+                req.prescriptions = rows;
+                next();
+            } else {
+                res.status(404).send('No prescriptions found for this pet');
+            }
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Error getting prescriptions');
+        }
     }
 };
 

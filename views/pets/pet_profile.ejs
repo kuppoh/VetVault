@@ -40,48 +40,66 @@
   </div>
 
   <div id="petButtons">
-    <button id="generalInfoButton">General Info</button>
-    <button id="medicationsButton">Medications</button>
+    <button id="generalInfoButton">General Details</button>
+    <button id="medicationsButton">Healthcare Details</button>
   </div>
 
   <div id="wholeInfo">
     <div id="general_info">
-      <h2>Conditions</h2>
-      <div>
-        <p>Name: <%- pet.BodyPart %></p>
-        <p>Symptom: <%- pet.Symptom %> </p>
-        <p>Treatment: <%- pet.MedName %></p>
-      </div>
-      <h2>Weight Check</h2>
-      <div>
-        <p>Current Weight: <%- latestWeight %>lbs</p>
-        <p>Previous Measurement: <%- previousWeight %>lbs</p>
-        <p>Measurement Date: <%- previousWeightDate %></p>
+      <h2 style="margin-top: 0px;">Weight Check</h2>
+      <div class="listWeight">
+        <div class="wl1">Latest Weight: <%- latestWeight %>lbs</div>
+        <div class="wl2"><%- latestWeightDate %></div>
+        <div class="wl3">Previous Weight: <%- previousWeight %>lbs</div>
+        <div class="wl4"><%- previousWeightDate %></div>
       </div>
 
-      <h2>Reminders</h2>
-      <ul>
+      <h2>Scheduled Reminders<span class="viewAll"><a style="text-decoration: none; color: #888888;"
+        href="/schedule">View Full Schedule</a></span></h2>
+      <div class="listOverflow">
         <% reminders.forEach(function(reminder) { %>
-          <li><%- reminder.ScheduleTime %> FOR <%- reminder.Description %></li>
+          <li class="listItem"><%- reminder.Description %> On <span style="font-style: italic; color: #888888;"><%-
+                  reminder.ScheduleTime %></span></li>
           <% }); %>
-      </ul>
+      </div>
 
-      <h2>Messages</h2>
-      <ul>
+      <h2>Messages </h2>
+      <div class="listOverflow">
         <% messages.forEach(function(message) { %>
-          <li><%- message.Urgent_Message %></li>
+          <li class="listItem"><%- message.Urgent_Message %></li>
           <% }); %>
-      </ul>
+      </div>
     </div>
 
     <div class="petMedicalInfo">
-      <h2>Medications</h2>
-      <div>
-        <p>Name: <%- pet.MedName %></p>
-        <p>For: <%- pet.BodyPart %></p>
-        <p>Dosage: <%- pet.Portion %></p>
-        <p>Frequency: <%- pet.Rate %></p>
-        <p>Administered on: <%- pet.pmiDate %></p>
+      <h2 style="margin-top: 0px;">Prescriptions<span class="viewAll"><a style="text-decoration: none; color: #888888;"
+            href="/prescriptions">View All</a></span></h2>
+      <div class="listOverflow" style="height: 250px">
+        <% prescriptions.forEach(function(prescription) { %>
+          <li class="listItem">
+            <%- prescription.MedName %> | Portion: <%- prescription.Portion %> | Rate: <%- prescription.Rate %> <span
+                    style="font-style: italic; color: #888888; float: right;">For: <%- pet.BodyPart %></span>
+          </li>
+          <% }); %>
+      </div>
+
+      <h2>Conditions</h2>
+      <div class="listWeight">
+        <div class="wl1">
+          <p>Name: <%- pet.BodyPart %></p>
+        </div>
+        <div class="wl2">
+          <p>Symptom: <%- pet.Symptom %> </p>
+        </div>
+        <div class="wl3">
+          <p>Treatment: <%- pet.MedName %></p>
+        </div>
+        <div class="wl4">
+          <p>Description: <%- consDesc %></p>
+        </div>
+
+
+
       </div>
 
     </div>
@@ -93,25 +111,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
- $(document).ready(function () {
+  $(document).ready(function () {
     // Add the 'selected' class to the #generalInfoButton when the page loads
     $("#generalInfoButton").addClass('selected');
 
     $("#generalInfoButton").click(function () {
-        $("#general_info").show();
-        $(".petMedicalInfo").hide();
-        // Add the 'selected' class to the clicked button and remove it from the other button
-        $(this).addClass('selected');
-        $("#medicationsButton").removeClass('selected');
+      $("#general_info").show();
+      $(".petMedicalInfo").hide();
+      // Add the 'selected' class to the clicked button and remove it from the other button
+      $(this).addClass('selected');
+      $("#medicationsButton").removeClass('selected');
     });
 
     $("#medicationsButton").click(function () {
-        $("#general_info").hide();
-        $(".petMedicalInfo").show();
-        // Add the 'selected' class to the clicked button and remove it from the other button
-        $(this).addClass('selected');
-        $("#generalInfoButton").removeClass('selected');
+      $("#general_info").hide();
+      $(".petMedicalInfo").show();
+      // Add the 'selected' class to the clicked button and remove it from the other button
+      $(this).addClass('selected');
+      $("#generalInfoButton").removeClass('selected');
     });
-});
+  });
 
 </script>
