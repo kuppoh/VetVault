@@ -1,59 +1,83 @@
-<div id="information">
-    <h1>Welcome Back, <%= name %>!</h1>
-</div>
-<div id="navigation">
-    <a href="/prescriptions"><button id="prescriptions">Prescriptions</button></a>
-    <form method="GET" action=<%="/petIndex/" + userID %>
-        <a href="/petIndex"><button id="myPets">My Pets</button></a>
-    </form>
-    <a href="/schedule"><button id="schedule">Schedule</button></a>
-</div>
-<div id="homepageLayout">
-    <div id="profileView">
+<div id="homepageContent">
+
+
+    <div class="home1">
         <h2>Profile</h2>
         <p>Name: <%- name %></p>
         <p>Email: <%- email %></p>
         <p>Phone: <%- phone %></p>
         <button id="editProfile">Edit</button>
-    </div>
-    <div id="urgentMessages">
-        <h2>Notifications</h2>
-        <ul class="notifications">
-            <% notifications.forEach(notification=> { %>
-                <li>
-                    <%= notification.Description %>
-                </li>
-                <% }) %>
-        </ul>
-    </div>
-    <div id="petListSmall">
-        <h2>My Pets</h2>
-        <% pets.forEach(function(pet) { %>
-            <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
-                <a href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
-            </form>
-            <% }); %>
-    </div>
-    <div id="Medications">
-        <h2>Medications</h2>
-        <ul>
-            <% prescriptions.forEach(function(prescription) { %>
-                <li>
-                    <div id="prescriptionsSmall">
-                        <h3>Pet Name: <%= prescription.Name %>
-                        </h3>
-                        <p>Medication: <%= prescription.MedName %>
-                        </p>
-                        <p>Description: <%= prescription.Description %>
-                        </p>
-                    </div>
-                </li>
+        <div>
+            <h2>My Pets</h2>
+            <% pets.forEach(function(pet) { %>
+                <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
+                    <a href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
+                </form>
                 <% }); %>
-        </ul>
+        </div>
     </div>
 
+
+    <div id="navigation" class="home2">
+        <a href="/prescriptions"><button id="prescriptions">Prescriptions</button></a>
+        <form method="GET" action=<%="/petIndex/" + userID %>
+            <a href="/petIndex"><button id="myPets">My Pets</button></a>
+        </form>
+        <a href="/schedule"><button id="schedule">Schedule</button></a>
+    </div>
+
+    <div class="home3">
+        <button id="notificationBtn">Notifications</button>
+        <button id="homeMedBtn">Medications</button>
+    </div>
+
+    <div class="home4">
+
+        <div class="homeNoti_Med">
+            <h2>Notifications</h2>
+            <div class="listOverflowHomepage">
+                <ul>
+                    <% notifications.forEach(notification=> { %>
+                        <li class="listItem">
+                            <%= notification.Description %>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="homeNoti_Med">
+            <h2>Medications</h2>
+            <div class="listOverflowHomepage">
+                <ul>
+                    <% prescriptions.forEach(function(prescription) { %>
+                        <li class="listItem">
+                            <div id="">
+                                <h3>Name: <%= prescription.Name %>
+                                </h3>
+                                <span><%= prescription.MedName %>
+                                </span>
+                                <span style="font-style: italic;">| <%= prescription.Description %>
+                                </span>
+                            </div>
+                        </li>
+                        <% }); %>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
+
+
+
+
+
+
+
 <script src="/socket.io/socket.io.js"></script>
 <script>
     // Replace <%= userID %> with the actual userId from the server side

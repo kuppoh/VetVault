@@ -199,19 +199,22 @@ p {
 }
 
 #navigation {
-    justify-content: center;
+    justify-content: space-between;
     justify-items: center;
     display: flex;
-    margin: 0;
+    margin: 20px;
     height: fit-content;
+    max-width: 100%;
 }
 
 #navigation button {
     padding: 10px;
     color: white;
-    font-size: 3em;
-    width: 32.33vw;
-    height: 377px;
+    font-size: 1em;
+    width: 23.33vw;
+    height: 30vh;
+    border-radius: 10px;
+    border: 1px solid #655C56;
     background-size: cover;
     background-position: center center;
     transition: all 0.2s ease;
@@ -1064,6 +1067,100 @@ li {
     transform: translateY(-50%);
 }
 
+
+#homepageContent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 30px;
+    grid-row-gap: 0px; 
+    width: 100%;
+    height: auto;
+    align-items: start;
+}
+
+.home1 { 
+    grid-area: 1 / 1 / 6 / 2;
+    position: relative;
+    width: 80%;
+    height: auto;
+    padding: 40px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #f1f1f1;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05); 
+}
+.home2 { 
+    grid-area: 1 / 2 / 2 / 5;
+    margin: 0;
+}
+.home3 { 
+    grid-area: 2 / 2 / 3 / 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.home4 { grid-area: 3 / 2 / 6 / 5; } 
+
+#notificationBtn.selected,
+#homeMedBtn.selected {
+    background-color: #655C56;
+    color: white;
+}
+
+#notificationBtn {
+    height: 45px;
+    width: 45%;
+    border-radius: 20px;
+    border-style: solid;
+    font-size: 1em;
+    background-color: #94D3AC;
+    border-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+
+}
+
+#homeMedBtn {
+    height: 45px;
+    width: 45%;
+    border-radius: 20px;
+    border-style: solid;
+    font-size: 1em;
+    background-color: #94D3AC;
+    border-color: #f1f1f1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+}
+
+#homeMedBtn:hover {
+    background-color: #655C56;
+    color: white;
+}
+
+#notificationBtn:hover {
+    background-color: #655C56;
+    color: white;
+}
+
+.homeNoti_Med {
+    margin: 20px;
+}
+
+.listOverflowHomepage {
+    background-color: white;
+    border-color: #f1f1f1;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+    max-width: 100%;
+    height: 300px;
+    overflow: scroll;
+    justify-items: center;
+}
 
 /* @media screen and (max-width: 820px) {
     .header{
