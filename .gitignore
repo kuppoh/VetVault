@@ -3,3 +3,4 @@ node_modules
 config/ca-certificate.crt
 coverage
 .nyc_output
+extra

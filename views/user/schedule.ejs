@@ -5,7 +5,7 @@
 
 <div id='calendar' style="width: 65%; height: 50%; margin: 0 auto;"></div>
 <style>
-  /* Add !important to ensure this rule takes precedence */
+
   .fc-button {
     background-color: #94D3AC;
     color: white;
@@ -24,23 +24,35 @@
   .fc-button.fc-button-primary:hover {
     background-color: #94D3AC;
   }
+
+  .wrap {
+    white-space: normal !important;
+    overflow: visible !important;
+    height: auto !important; 
+}
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        right: 'prev,next today',
-        center: 'title',
-        left: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      eventColor:'#94D3AC',
-      events: JSON.parse('<%- JSON.stringify(schedule).replace(/\'/g, "\\\\'") %>')
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            right: 'prev,next today',
+            center: 'title',
+            left: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        eventColor:'#94D3AC',
+        events: JSON.parse('<%- JSON.stringify(schedule).replace(/\'/g, "\\\\'") %>'),
+        eventDidMount: function(info) {
+            $(info.el).addClass('wrap');
+        }
     });
 
     calendar.render();
-  });
+});
 </script>
+

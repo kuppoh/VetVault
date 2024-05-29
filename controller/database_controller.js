@@ -29,7 +29,7 @@ const databaseController = {
         let BodyPart = req.body.bodyPart;
         let Symptom = req.body.symptom;
         let ConDescription = req.body.conDescription;
-        let Weight = req.body.weight;
+        let Weight = req.body.weight; 
         let WeightDate = req.body.weightDate;
         let UserName = req.body.userName;
         let petId = req.params.id;
@@ -79,7 +79,7 @@ const databaseController = {
             }
 
             
-            console.log(Name, Gender, BirthDate, Breed, Description, UserName, petId);
+            console.log(Name, Gender, BirthDate, Breed, Description, UserName, petId, Weight, WeightDate);
 
             await promiseUserPool.query(`
             UPDATE PET P
@@ -99,12 +99,10 @@ const databaseController = {
                 U.name = ?
             WHERE P.PetID = ?
         `, [Name, Gender, BirthDate, Breed, Description, UserName, petId]);
-            
-            // let Weight = req.body.weight; 
 
-            // if (Weight !== "" && WeightDate !== "") {
-            //     await promiseUserPool.query('INSERT INTO WEIGHTCHECK (PetID, Weight, Date) VALUES ((SELECT DISTINCT w.PetID FROM WEIGHTCHECK w JOIN PET p ON w.PetID = p.PetID WHERE p.Name = ?), ?, ?)',[Name, Weight, WeightDate]);
-            // }
+            if (Weight !== "" && WeightDate !== "") {
+                await promiseUserPool.query('INSERT INTO WEIGHTCHECK (PetID, Weight, Date) VALUES ((SELECT DISTINCT w.PetID FROM WEIGHTCHECK w JOIN PET p ON w.PetID = p.PetID WHERE p.Name = ?), ?, ?)',[Name, Weight, WeightDate]);
+            }
             
             res.redirect('/petProfile/' + petId);
         } catch (error) {
@@ -125,9 +123,13 @@ const databaseController = {
             const petId = req.params.id;
 
             const [petInfo] = await promiseUserPool.query('SELECT * FROM Pet_View WHERE PetID = ?', petId);
-
             if (petInfo.length > 0) {
                 req.petInfo = petInfo[0];
+            }
+
+            const [petImage] = await promiseUserPool.query('SELECT * FROM Pet_Image_Tag_List WHERE PetID = ?', petId);
+            if (petImage.length > 0) {
+                req.petImage = petImage[0];
             }
 
             const [rows] = await promiseUserPool.query(`
@@ -158,6 +160,12 @@ const databaseController = {
         try {
             const userId = req.user.id;  // Assuming the user's ID is stored in req.user.id
 
+            const [petInfo] = await promiseUserPool.query('SELECT * FROM Pet_View WHERE UserID = ?', userId);
+
+            if (petInfo.length > 0) {
+                req.petInfo = petInfo[0];
+            }
+
             const [rows] = await promiseUserPool.query(`
                 SELECT *
                 FROM PET P
@@ -186,7 +194,7 @@ const databaseController = {
     },
     getLatestWeightCheck: async (req, res, next) => {
         try {
-        const [results] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK wc WHERE wc.PetID = ? ORDER BY wc.Date DESC LIMIT 1', [req.params.id]);
+        const [results] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK wc WHERE wc.PetID = ? ORDER BY wc.WCID DESC LIMIT 1', [req.params.id]);
         if (results.length > 0) {
             req.weight = results[0];
             next();
@@ -214,10 +222,13 @@ const databaseController = {
         try {
             const petId = req.params.id;
 
+            
             const [messagesRows] = await promiseUserPool.query('SELECT * FROM Urgent_list WHERE PetID = ?', petId);
 
             if (messagesRows.length > 0) {
                 req.messages = messagesRows;
+            } else {
+                req.messages = [];
             }
             
             const [rows] = await promiseUserPool.query('SELECT * FROM Reminder_List WHERE PetID = ?', petId);
@@ -225,8 +236,6 @@ const databaseController = {
             if (rows.length > 0) {
                 req.reminders = rows;
                 next();
-            } else {
-                res.status(404).send('No reminders found for this pet');
             }
         } catch (error) {
             console.error(error);

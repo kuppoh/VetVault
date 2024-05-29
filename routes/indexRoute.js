@@ -105,13 +105,14 @@ router.get("/schedule", ensureAuthenticated, async (req, res) => {
 router.get("/prescriptions", ensureAuthenticated, async (req, res) => {
   const userId = req.user.id;
   const [rows] = await promiseUserPool.query(`
-    SELECT O.UserID, O.PetID, P.Name, S.DateTime, M.MedName, M.Description, PMI.Portion, PMI.Rate
+    SELECT O.UserID, O.PetID, I.URL, P.Name, S.DateTime, M.MedName, M.Description, PMI.Portion, PMI.Rate
     FROM PRESCRIPTION PRS
     JOIN SCHEDULE S ON PRS.ScheduleID = S.ScheduleID
     JOIN PET_MED_INT PMI ON PRS.MedID = PMI.MedID
     JOIN MEDICATION M ON PMI.MedID = M.MedID
     JOIN OWNERSHIP_INT O ON S.PetID = O.PetID
     JOIN PET P ON O.PetID = P.PetID
+    JOIN IMAGE I ON P.ImageID = I.ImageID
     WHERE O.UserID = ?
   `, userId);
 
@@ -121,67 +122,6 @@ router.get("/prescriptions", ensureAuthenticated, async (req, res) => {
   });
 });
 
-// Does not work yet - need to fix (i think there needs to be a separate page for each prescpription you change??? idk)
-// router.post("/prescriptions", ensureAuthenticated, async (req, res) => {
-//   let MedName = req.body.medName;
-//   let DateTime = req.body.dateTime;
-//   let MedDescription = req.body.medDescription;
-//   let Portion = req.body.portion;
-//   let Rate = req.body.rate;
-//   let UserId = req.body.id;
-//   let PetID = req.body.PetID;
-
-//   console.log(MedName, DateTime, MedDescription, Portion, Rate, UserId, PetID);
-
-//   try {
-//     const [rows] = await promiseUserPool.query(
-//       `SELECT O.PetID, O.UserID, P.Name, S.DateTime, M.MedName, M.Description, PMI.Portion, PMI.Rate
-//       FROM PRESCRIPTION PRS
-//       JOIN SCHEDULE S ON PRS.ScheduleID = S.ScheduleID
-//       JOIN PET_MED_INT PMI ON PRS.MedID = PMI.MedID
-//       JOIN MEDICATION M ON PMI.MedID = M.MedID
-//       JOIN OWNERSHIP_INT O ON S.PetID = O.PetID
-//       JOIN PET P ON O.PetID = P.PetID
-//       WHERE O.UserID = ?`, [UserId]
-//     );
-//     const currentInfo = rows[0];
-
-//     if (MedName === "") {
-//       MedName = currentInfo.MedName;
-//     }
-//     if (MedDescription === "") {
-//       MedDescription = currentInfo.MedDescription;
-//     }
-//     if (DateTime === ""){
-//       DateTime = currentInfo.DateTime;
-//     }
-//     if (Portion === "") {
-//       Portion = currentInfo.Portion;
-//     }
-//     if (Rate === "") {
-//       Rate = currentInfo.Rate;
-//     }
-
-//     await promiseUserPool.query(`
-//     UPDATE MEDICATION M
-//     JOIN PET_MED_INT PMI ON M.MedID = PMI.MedID
-//     JOIN PRESCRIPTION PRS ON PMI.MedID = PRS.MedID
-//     JOIN SCHEDULE S ON PRS.ScheduleID = S.ScheduleID
-//     JOIN OWNERSHIP_INT O ON S.PetID = O.PetID
-//     SET M.MedName = ?, M.Description = ?, S.DateTime = ?, PMI.Portion = ?, PMI.Rate = ?
-//     WHERE O.UserID = ? AND O.PetID = ?
-//   `, [MedName, MedDescription, DateTime, Portion, Rate, UserId, PetID]);
-//   console.log("Prescription updated successfully");
-
-//   res.redirect("/prescriptions");
-
-//   } catch (error) {
-//     console.error(error);
-//   };
-
-
-//   // res.redirect("/prescriptions");
-// });
 
 // Route to render the admin page for admin users only
 router.get("/admin", ensureAuthenticated, isAdmin, (req, res) => {

@@ -6,7 +6,7 @@ const { ensureAuthenticated } = require("../middleware/checkAuth");
 const databaseController = require("../controller/database_controller");
 
 router.get('/petIndex/:id', ensureAuthenticated, databaseController.getPetsbyUserID, (req, res) => {
-  res.render('pets/pets_index', {pets: req.pets});
+  res.render('pets/pets_index', {pets: req.pets, petInfo: req.petInfo});
 });
 
 router.get('/petIndex/', ensureAuthenticated, (req, res) => 
@@ -36,6 +36,8 @@ router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID
       petInfo: req.petInfo,
       reminders: req.reminders,
       messages: req.messages,
+
+      petImage: req.petImage,
 
       prescriptions: req.prescriptions,
     });

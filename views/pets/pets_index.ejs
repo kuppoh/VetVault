@@ -7,7 +7,7 @@
         <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
           <a class="list_c1" href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
         </form>
-        <div class="list_c2">Age: <%- pet.age%></div>
+        <div class="list_c2">Age: <%- petInfo.Pet_Age %></div>
         <div class="list_c3">Sex: <%- pet.Gender%></div>
         <div class="list_c4">Description: <%- pet.Description %></div>
       </div>

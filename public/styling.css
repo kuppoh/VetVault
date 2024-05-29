@@ -494,7 +494,6 @@ li {
 }
 
 .profileTemplate {
-    position: absolute;
     margin: 0;
     padding: 0;
     bottom: 0;
@@ -513,7 +512,7 @@ li {
     grid-area: 1 / 1 / 6 / 3;
     position: relative;
     width: 80%;
-    height: 80%;
+    height: auto;
     padding: 40px;
     margin: 20px;
     display: flex;
@@ -531,8 +530,6 @@ li {
 
 .profile-layout {
     font-size: 1em;
-
-
 }
 
 #petDetails {
@@ -546,11 +543,6 @@ li {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-
-/* .pd1, .pd2, .pd3, .pd4, .pd5, .pd6 {
-    margin-bottom: -15px;
-    margin-top: -15px;  
-} */
 
 .pd1 {
     grid-area: 1 / 1 / 2 / 5;
@@ -766,8 +758,25 @@ li {
     color: #888888;
     font-style: italic;
     text-align: center;
+    text-decoration: none;
 }
 
+.viewAll:hover {
+    color: #655C56;
+}
+
+.profile_picture {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.no_messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 #editPage {
     display: grid;
@@ -817,19 +826,83 @@ li {
     border: 1px solid #655C56;
 }
 
+
 .editPetInfo form select {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #655C56;
 }
 
-.editPetInfo form button {
+#updateInfoBtn{
+    background-color: #94D3AC;
+}
+
+#updateWeightBtn {
+    background-color: #94D3AC;
+}
+
+#updateWeightBtn:hover {
+    background-color: #655C56;
+}
+
+#cancelBtn {
+    background-color: #888888;
+    color: white;
+    width: 95%;
+    justify-self: center;
+    margin: 0 auto;
     padding: 10px;
+    text-align: center;
     border-radius: 10px;
     border: 1px solid #655C56;
+}
+
+#cancelBtn:hover {
     background-color: #655C56;
+}
+
+
+#cancelBtnWeight {
+    background-color: #888888;
     color: white;
-    font-size: 1.2em;
+    width: 95%;
+    justify-self: center;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #655C56;
+}
+
+#cancelBtnWeight:hover {
+    background-color: #655C56;
+}
+
+
+#updateInfoBtn:hover {
+    background-color: #655C56;
+}
+
+#updateWeightInfo {
+    display: none;
+}
+
+.update_weight {
+    border: none; /* Remove border */
+    background: none; /* Remove background */
+    outline: none; /* Remove outline */
+    color: #888888; /* Set text color to black */
+    float: right;
+    font-size: .5em;
+    margin-right: 10px;
+    color: #888888;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+}
+
+.update_weight:hover {
+    color: #655C56;
 }
 
 #scheduleBlock {
@@ -871,13 +944,25 @@ li {
     margin: auto;
 }
 
+.prescription_Petpicture {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
 .p_child1 {
     grid-area: 1 / 1 / 6 / 3;
-    background-color: #94D3AC;
     border-radius: 10px;
     text-align: center;
     font-size: 1.5em;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+    max-width: 100%;
+    height: auto;
+
 }
 
 .p_child2 {

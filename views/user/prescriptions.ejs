@@ -23,9 +23,15 @@
   <% prescriptions.forEach(function(prescription) { %>
     <div class="prescriptionWrap">
       <div class="prescription">
-        <div class="p_child1">
-          <%= prescription.Name %>
-        </div>
+
+          <div class="p_child1">
+            <span><%= prescription.Name %></span>
+            <img src="<%= prescription.URL %>" class="prescription_Petpicture" alt="PetImage" title="source: imgur.com">
+          </div>
+
+
+
+
         <div class="p_child2">Medication: <%= prescription.MedName %>
         </div>
         <div class="p_child3">Description: <%= prescription.Description %>
