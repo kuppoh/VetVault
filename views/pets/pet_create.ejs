@@ -1,0 +1,24 @@
+<div class="editPet">
+    <h2>Create a Pet</h2>
+<form action="/petCreate" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">
+    
+    
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <label for="species">Species:</label>
+    <input type="text" id="species" name="species">
+    <label for="breed">Breed:</label>
+    <input type="text" id="breed" name="breed">
+    <label for="birthdate">Birthdate:</label>
+    <input type="date" id="birthdate" name="birthdate">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea>
+    
+    <input type="submit" value="Create Pet">
+</form>
+</div>
