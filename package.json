@@ -37,9 +37,7 @@
     "dev": "nodemon server.js",
     "server-test": "start-server-and-test dev http://localhost:3000 coverage"
   },
-  
-    "engines": {
-      "npm": "10.8.0"
-    }
-  
+  "engines": {
+    "npm": "10.8.0"
+  }
 }

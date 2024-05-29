@@ -211,7 +211,9 @@ const databaseController = {
 },
     getPreivousWeightCheck: async (req, res, next) => {
         try {
-            const [results] = await promiseUserPool.query('SELECT * FROM WEIGHTCHECK wc WHERE wc.PetID = ? ORDER BY wc.Date DESC LIMIT 1, 1', [req.params.id]);
+            const [results] = await promiseUserPool.query(`SELECT * FROM (
+                SELECT * FROM WEIGHTCHECK wc WHERE wc.PetID = ? ORDER BY wc.WCID DESC LIMIT 2
+            ) AS subquery ORDER BY WCID ASC LIMIT 1`, [req.params.id]);
             if (results.length > 0) {
                 req.prevWeight = results[0];
                 next();
