@@ -17,31 +17,37 @@ router.get('/petIndex/', ensureAuthenticated, (req, res) =>
 router.post('/deletePet/:id', ensureAuthenticated, databaseController.deletePet);
 
 // getting pet profile
-router.get('/petProfile/:id', ensureAuthenticated, databaseController.getPetbyID, databaseController.getLatestWeightCheck, databaseController.getPreivousWeightCheck, databaseController.getRemindersforPet, databaseController.getPrescriptionsForPet, (req, res) => {
-  res.render('pets/pet_profile', 
-    {
-      pet: req.pet, 
-      med: req.pet.MedName,
-      medDesc: req.pet.MedDescription, 
-      cons: req.pet.BodyPart, 
-      symptoms: req.pet.Symptom,
-      consDesc: req.pet.ConDescription,
-      weight: req.pet.Weight, 
-      weightDate: req.pet.Date,
-      owner: req.pet.UserName,
-      latestWeight: req.weight.Weight,
-      latestWeightDate: req.weight.Date,
-      previousWeight: req.prevWeight.Weight,
-      previousWeightDate: req.prevWeight.Date,
-      petInfo: req.petInfo,
-      reminders: req.reminders,
-      messages: req.messages,
-
-      petImage: req.petImage,
-
-      prescriptions: req.prescriptions,
+router.get('/petProfile/:id', 
+  ensureAuthenticated, 
+  databaseController.getPetbyID, 
+  databaseController.getLatestWeightCheck, 
+  databaseController.getPreivousWeightCheck, 
+  databaseController.getRemindersforPet, 
+  databaseController.getPrescriptionsForPet, 
+  (req, res) => {
+    res.render('pets/pet_profile', {
+      pet: req.pet || "No Pet Information", 
+      med: req.pet?.MedName || "No Medication",
+      medDesc: req.pet?.MedDescription || "No Medication Descriptions", 
+      cons: req.pet?.BodyPart || "No Conditions", 
+      symptoms: req.pet?.Symptom || "No Symptoms",
+      consDesc: req.pet?.ConDescription || "No Conditions Descriptions",
+      weight: req.pet?.Weight || "No Registered Weight", 
+      weightDate: req.pet?.Date || "No Registered Date",
+      owner: req.pet?.UserName || "No Owner",
+      latestWeight: req.weight?.Weight || "No Latest Weight",
+      latestWeightDate: req.weight?.Date || "No Latest Weight Date",
+      previousWeight: req.prevWeight?.Weight || "No Previous Weight",
+      previousWeightDate: req.prevWeight?.Date || "No Previous Weight Date",
+      petInfo: req.petInfo || "No Pet Information",
+      reminders: req.reminders || "No Reminders",
+      messages: req.messages || "No Messages",
+      petImage: req.petImage || "No Image",
+      prescriptions: req.prescriptions || "No Prescriptions",
     });
-});
+  }
+);
+
 
 
 router.post('/petProfile/:id', ensureAuthenticated, databaseController.editPet);
