@@ -2,13 +2,18 @@
 
 
     <div class="home1">
-        <h2>Profile</h2>
-        <p>Name: <%- name %></p>
-        <p>Email: <%- email %></p>
-        <p>Phone: <%- phone %></p>
-        <button id="editProfile">Edit</button>
-        <div>
-            <h2>My Pets</h2>
+        <h2>Profile Details</h2>
+        <div id="userDetails">
+            <h4>Name</h4>
+            <p><%- name %></p>
+            <h4>Email</h4>
+            <p> <%- email %></p>
+            <h4>Phone</h4>
+            <p> <%- phone %></p>
+        </div>
+        <!-- <button id="editProfile">Edit</button> -->
+        <h2>My Pets</h2>
+        <div id="smallPetList">
             <% pets.forEach(function(pet) { %>
                 <form method="GET" action=<%="/petProfile/" + pet.PetID %>>
                     <a href="/petProfile/<%= pet.PetID %>"><%- pet.Name %></a>
@@ -33,7 +38,7 @@
 
     <div class="home4">
 
-        <div class="homeNoti_Med">
+        <div id="homeNotis" class="homeNoti_Med">
             <h2>Notifications</h2>
             <div class="listOverflowHomepage">
                 <ul>
@@ -44,18 +49,17 @@
                         <% }) %>
                 </ul>
             </div>
-
         </div>
 
-        <div class="homeNoti_Med">
-            <h2>Medications</h2>
+        <div id="homeMeds" class="homeNoti_Med">
+            <h2>Medications<span><a class="viewAll" href="/prescriptions">View All</a></span></h2>
             <div class="listOverflowHomepage">
                 <ul>
                     <% prescriptions.forEach(function(prescription) { %>
                         <li class="listItem">
                             <div id="">
-                                <h3>Name: <%= prescription.Name %>
-                                </h3>
+                                <h4>Name: <%= prescription.Name %>
+                                </h4>
                                 <span><%= prescription.MedName %>
                                 </span>
                                 <span style="font-style: italic;">| <%= prescription.Description %>
@@ -73,12 +77,8 @@
 </div>
 
 
-
-
-
-
-
 <script src="/socket.io/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     // Replace <%= userID %> with the actual userId from the server side
     const userID = '<%= userID %>';
@@ -104,4 +104,25 @@
             notificationsList.appendChild(newNotificationItem);
         });
     });
+    $(document).ready(function () {
+    // Add the 'selected' class to the #generalInfoButton when the page loads
+    $("#notificationBtn").addClass('selected');
+
+    $("#notificationBtn").click(function () {
+        $("#homeNotis").show();
+        $("#homeMeds").hide();
+        // Add the 'selected' class to the clicked button and remove it from the other button
+        $(this).addClass('selected');
+        $("#homeMedBtn").removeClass('selected');
+    });
+
+    // Add this block
+    $("#homeMedBtn").click(function () {
+        $("#homeMeds").show();
+        $("#homeNotis").hide();
+        // Add the 'selected' class to the clicked button and remove it from the other button
+        $(this).addClass('selected');
+        $("#notificationBtn").removeClass('selected');
+    });
+});
 </script>

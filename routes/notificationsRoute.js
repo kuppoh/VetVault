@@ -15,6 +15,7 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
             SELECT Description FROM REMINDER R
             JOIN WEIGHTCHECK W ON R.WCID = W.WCID
             JOIN OWNERSHIP_INT O ON W.PetID = O.PetID
+            ORDER BY R.RemindID DESC
             WHERE O.UserID = ?;
         `, [userID]);
         res.render('user/homepage', { notifications, userId: userID });
