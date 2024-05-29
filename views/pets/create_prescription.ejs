@@ -1,0 +1,27 @@
+<form action="/createPrescription" method="POST">
+    <label for="petName">Pet Name:</label>
+    <select id="petName" name="petName" required>
+        <option value="">Select a pet</option>
+        <% pets.forEach(function(pet) { %>
+            <option value="<%= pet.PetID %>"><%= pet.Name %></option>
+        <% }); %>
+    </select><br><br>
+    
+    <label for="medName">Medication Name:</label>
+    <input type="text" id="medName" name="medName" required><br><br>
+
+    
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea><br><br>
+    
+    <label for="portion">Portion:</label>
+    <input type="text" id="portion" name="portion" required><br><br>
+    
+    <label for="frequency">Frequency:</label>
+    <input type="number" id="frequency" name="frequency" required><br><br>
+    
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br><br>
+    
+    <input type="submit" value="Create Prescription">
+</form>

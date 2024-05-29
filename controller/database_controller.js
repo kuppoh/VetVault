@@ -21,108 +21,91 @@ const databaseController = {
     editPet: async (req, res) => {
         const petId = req.params.id;
         const userInput = req.body;
-      
+        console.log("Initial userInput:", userInput);
+    
         try {
-          const [rows] = await promiseUserPool.query(`
-            SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName
-            FROM PET P 
-            LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
-            LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID
-            LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID
-            LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID
-            LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID
-            LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID
-            LEFT JOIN users U ON OI.UserID = U.ID
-            WHERE P.PetID = ?
-          `, [petId]);
-      
-          const currentInfo = rows[0] || {
-            Name: '',
-            Gender: '',
-            BirthDate: null,
-            Specie: '',
-            Breed: '',
-            Description: '',
-            MedName: '',
-            MedDescription: '',
-            BodyPart: '',
-            Symptom: '',
-            ConDescription: '',
-            Weight: null,
-            UserName: ''
-          };
-      
-          // Populate empty fields in userInput with currentInfo or defaults
-          for (const key in userInput) {
-            if (!userInput[key]) {
-              userInput[key] = currentInfo[key] || '';
-            }
-          }
-      
-          const {
-            Name = currentInfo.Name,
-            Gender = currentInfo.Gender,
-            BirthDate = currentInfo.BirthDate,
-            Specie = currentInfo.Specie,
-            Breed = currentInfo.Breed,
-            Description = currentInfo.Description,
-            MedName = currentInfo.MedName,
-            MedDescription = currentInfo.MedDescription,
-            BodyPart = currentInfo.BodyPart,
-            Symptom = currentInfo.Symptom,
-            ConDescription = currentInfo.ConDescription,
-            Weight = currentInfo.Weight,
-            UserName = currentInfo.UserName
-          } = userInput;
-      
-          await promiseUserPool.query(`
-            UPDATE PET P
-            LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
-            LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID
-            LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID
-            LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID
-            LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID
-            LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID
-            LEFT JOIN users ON OI.UserID = users.id
-            LEFT JOIN users U ON OI.UserID = U.ID
-            SET P.Name = ?,
-                P.Gender = ?,
-                P.BirthDate = ?,
-                P.Specie = ?,
-                P.Breed = ?,
-                P.Description = ?,
-                M.MedName = ?,
-                M.Description = ?,
-                C.BodyPart = ?,
-                C.Symptom = ?,
-                C.Description = ?,
-                W.Weight = ?,
-                U.name = ?
-            WHERE P.PetID = ?
-          `, [Name, Gender, BirthDate, Specie, Breed, Description, MedName, MedDescription, BodyPart, Symptom, ConDescription, Weight, UserName, petId]);
-      
-          res.redirect('/petProfile/' + petId);
-          console.log("Final userInput:", {
-            Name,
-            Gender,
-            BirthDate,
-            Specie,
-            Breed,
-            Description,
-            MedName,
-            MedDescription,
-            BodyPart,
-            Symptom,
-            ConDescription,
-            Weight,
-            UserName
-          });
-          
+            const [rows] = await promiseUserPool.query(`
+                SELECT P.*, M.MedName, M.Description as MedDescription, C.BodyPart, C.Symptom, C.Description as ConDescription, W.Weight, W.Date, U.name as UserName
+                FROM PET P 
+                LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
+                LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID
+                LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID
+                LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID
+                LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID
+                LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID
+                LEFT JOIN users U ON OI.UserID = U.ID
+                WHERE P.PetID = ?
+            `, [petId]);
+    
+            const currentInfo = rows[0] || {
+                Name: '',
+                Gender: '',
+                BirthDate: null,
+                Specie: '',
+                Breed: '',
+                Description: '',
+                MedName: '',
+                MedDescription: '',
+                BodyPart: '',
+                Symptom: '',
+                ConDescription: '',
+                Weight: null,
+                UserName: ''
+            };
+    
+            // Update only non-empty fields from userInput
+            const updatedFields = {
+                Name: userInput.name || currentInfo.Name,
+                Gender: userInput.gender || currentInfo.Gender,
+                BirthDate: userInput.birthdate || currentInfo.BirthDate,
+                Specie: userInput.specie || currentInfo.Specie,
+                Breed: userInput.breed || currentInfo.Breed,
+                Description: userInput.description || currentInfo.Description,
+                MedName: userInput.medName || currentInfo.MedName,
+                MedDescription: userInput.medDescription || currentInfo.MedDescription,
+                BodyPart: userInput.bodyPart || currentInfo.BodyPart,
+                Symptom: userInput.symptom || currentInfo.Symptom,
+                ConDescription: userInput.conDescription || currentInfo.ConDescription,
+                Weight: userInput.weight || currentInfo.Weight,
+                UserName: userInput.userName || currentInfo.UserName
+            };
+    
+            await promiseUserPool.query(`
+                UPDATE PET P
+                LEFT JOIN PET_MED_INT PMI ON P.PetID = PMI.PetID
+                LEFT JOIN MEDICATION M ON PMI.MedID = M.MedID
+                LEFT JOIN PET_CON_INT PCI ON P.PetID = PCI.PetID
+                LEFT JOIN CONDITIONS C ON PCI.ConditionID = C.ConditionID
+                LEFT JOIN WEIGHTCHECK W ON P.PetID = W.PetID
+                LEFT JOIN OWNERSHIP_INT OI ON P.PetID = OI.PetID
+                LEFT JOIN users ON OI.UserID = users.id
+                LEFT JOIN users U ON OI.UserID = U.ID
+                SET P.Name = ?,
+                    P.Gender = ?,
+                    P.BirthDate = ?,
+                    P.Specie = ?,
+                    P.Breed = ?,
+                    P.Description = ?,
+                    M.MedName = ?,
+                    M.Description = ?,
+                    C.BodyPart = ?,
+                    C.Symptom = ?,
+                    C.Description = ?,
+                    W.Weight = ?,
+                    U.name = ?
+                WHERE P.PetID = ?
+            `, [updatedFields.Name, updatedFields.Gender, updatedFields.BirthDate, updatedFields.Specie, updatedFields.Breed, updatedFields.Description, updatedFields.MedName, updatedFields.MedDescription, updatedFields.BodyPart, updatedFields.Symptom, updatedFields.ConDescription, updatedFields.Weight, updatedFields.UserName, petId]);
+    
+            res.redirect('/petProfile/' + petId);
+            console.log("Final userInput:", updatedFields);
+            
         } catch (error) {
-          console.error(error);
-          res.status(500).send('Error updating pet');
+            console.error(error);
+            res.status(500).send('Error updating pet');
         }
-      },
+    },
+    
+    
             
             
     deletePet: async (req, res) => {
@@ -173,6 +156,7 @@ const databaseController = {
         }
       },
     getPetsbyUserID: async (req, res, next) => {
+        console.log("getPetsbyUserID called")
         try {
             const userId = req.user.id;  // Assuming the user's ID is stored in req.user.id
 
@@ -278,7 +262,39 @@ const databaseController = {
             console.error(error);
             res.status(500).send('Error getting prescriptions');
         }
-    }
+    },
+    createPrescription: async (req, res) => {
+        console.log("createPrescription called");
+        const prescriptionInfo = {
+            MedName: req.body.medName,
+            Description: req.body.description
+        };
+        console.log(req.body);
+        try {
+            const [currentMeds] = await promiseUserPool.query('SELECT * FROM MEDICATION WHERE MedName = ?', req.body.medName);
+            if (currentMeds.length === 0) { // If the medication does not exist in the database, insert it
+                await promiseUserPool.query("INSERT INTO MEDICATION SET `MedName` = ?, `Description` = ?", [req.body.medName, req.body.description]);
+            }
+    
+            const [pet] = await promiseUserPool.query('SELECT * FROM PET WHERE PetID = ?', req.body.petName); // Assuming PetID is used in the dropdown
+            console.log(pet);
+            if (pet.length === 0) {
+                throw new Error(`Pet not found for ID: ${req.body.petName}`);
+            }
+            
+            await promiseUserPool.query("INSERT INTO PET_MED_INT (PetID, MedID, Portion, Rate, Date) VALUES (?, (SELECT MedID FROM MEDICATION WHERE MedName = ?), ?, ?, ?)", [pet[0].PetID, req.body.medName, req.body.portion, req.body.rate, req.body.date]);
+    
+            res.redirect('/petProfile/' + req.body.petName);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(`Error creating prescription: ${error.message}`);
+        }
+    },
+    
+    
+    
+    
+    
 };
 
 

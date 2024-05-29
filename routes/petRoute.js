@@ -49,7 +49,10 @@ router.get('/petProfile/:id',
 );
 
 
-
+router.get('/createPrescription', ensureAuthenticated, databaseController.getPetsbyUserID, (req, res) => {
+  res.render('pets/create_prescription', { pets: req.pets, pet: req.pet });
+});
+router.post('/createPrescription', ensureAuthenticated, databaseController.createPrescription);
 router.post('/petProfile/:id', ensureAuthenticated, databaseController.editPet);
 
 // router.post('/petProfile/:id/petEdit', ensureAuthenticated, databaseController.getPetbyID);
