@@ -11,7 +11,7 @@ const databaseController = {
         };
         try {
             await promiseUserPool.query('INSERT INTO PET SET ?', pet);
-            await promiseUserPool.query("INSERT INTO OWNERSHIP_INT (UserID, PetID, AuthorityID) VALUES (?, (SELECT PetID FROM PET WHERE Name = ?), 'A001')", [req.user.id, pet.Name]);
+            await promiseUserPool.query("INSERT INTO OWNERSHIP_INT (UserID, PetID, AuthorityID, ImageID) VALUES (?, (SELECT PetID FROM PET WHERE Name = ?), 'A001', 'I028')", [req.user.id, pet.Name]);
             res.redirect('/petIndex');
         } catch (error) {
             console.error(error);

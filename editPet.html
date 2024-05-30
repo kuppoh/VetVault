@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Profile</title>
+    <link rel="stylesheet" href="/VetVault/public/styling.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <img src="vetvault.png" alt="VetVault Logo">
+            <h1>VetVault</h1>
+        </div>
+        <ul>
+            <li><a href="/schedule">SCHEDULE</a></li>
+            <li><a href="/prescriptions">PRESCRIPTIONS</a></li>
+            <li><a href="/petlist">MY PETS</a></li>
+            <li><a href="/homepage">HOME</a></li>
+        </ul>
+    </header>
+    <div class="profileTemplate" id="editPage">
+        <div class="profileDetails">
+            <h2>Pet Profile</h2>
+            <%- petImage %>
+            <div class="two-column-layout">
+                <p>Name: <%- petName%></p>
+                <p>Age: <%- petAge%></p>
+                <p>Gender: <%- petGender%></p>
+                <p>Breed: <%- petBreed%></p>
+                <p>Birthday: <%- petBday%></p>
+                <p>Description: <%- petInfo%></p>
+                <p>Owner: <%- petOwner%></p>
+            </div>
+        </div>
+        <div class="editPetInfo">
+            <h2>Edit Pet Information</h2>
+            <form action="/register" method="post">
+                <label for="petName">Name:</label>
+                <input type="text" id="petName" name="petName" required>
+                <label for="petAge">Age:</label>
+                <input type="number" id="petAge" name="petAge" required>
+                <label for="petGender">Gender:</label>
+                <select id="petGender" name="petGender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <label for="petBreed">Breed:</label>
+                <input type="text" id="petBreed" name="petBreed" required>
+                <label for="petBday">Birthday:</label>
+                <input type="date" id="petBday" name="petBday" required>
+                <label for="petInfo">Description:</label>
+                <textarea id="petInfo" name="petInfo" required></textarea>
+                <label for="petOwner">Owner:</label>
+                <input type="text" id="petOwner" name="petOwner" required>
+                <input type="submit" value="Update Pet Information">
+            
+            </form>
+    </div>
+</body>
+</html>

@@ -53,10 +53,12 @@ router.get('/createPrescription', ensureAuthenticated, databaseController.getPet
   res.render('pets/create_prescription', { pets: req.pets, pet: req.pet });
 });
 router.post('/createPrescription', ensureAuthenticated, databaseController.createPrescription);
-router.post('/petProfile/:id', ensureAuthenticated, databaseController.editPet);
-
+router.post('/petProfile/:id', ensureAuthenticated, databaseController.editPet)
 // router.post('/petProfile/:id/petEdit', ensureAuthenticated, databaseController.getPetbyID);
-
+router.get('/petCreate', ensureAuthenticated, (req, res) => {
+  res.render('pets/create_pet');
+});
+router.post('/petCreate', ensureAuthenticated, databaseController.createPet);
 // editing pets
 router.get('/petProfile/:id/edit', ensureAuthenticated, databaseController.getPetbyID, (req, res) => {
   res.render('pets/pet_edit', {pet: req.pet, petInfo: req.petInfo});
