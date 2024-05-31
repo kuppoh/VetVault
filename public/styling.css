@@ -790,6 +790,48 @@ li {
     width: calc(100vw - 40px);
 }
 
+.petCreateInfo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    width: 95%;
+    padding: 20px;
+}
+
+.petCreateInfo h2 {
+    font-size: 3em;
+    margin-top: 0;
+}
+
+.petCreateInfo form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-self: center;
+    width: auto;
+}
+
+#submitFormPet{
+    background-color: #94D3AC;
+    color: white;
+}
+
+#submitFormPet:hover {
+    background-color: #655C56;
+}
+
+.petCreateInfo * {
+    margin: 10px;
+    font-size: 15px;
+}
+
+.petCreateInfo form input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #655C56;
+}
+
 #editPetForm {
     display: none;
 }
@@ -834,6 +876,8 @@ li {
     border-radius: 10px;
     border: 1px solid #94D3AC;
     background-color: #94D3AC;
+    color: white;
+    text-decoration: none;
 }
 
 #createPetBtn:hover {
@@ -856,6 +900,22 @@ li {
 }
 
 #updateWeightBtn:hover {
+    background-color: #655C56;
+}
+
+.cancelB {
+    background-color: #888888;
+    color: white;
+    width: 95%;
+    justify-self: center;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #655C56;
+}
+
+.cancelB:hover {
     background-color: #655C56;
 }
 

@@ -155,8 +155,6 @@
           <label for="userName">Owner:</label>
           <input type="text" id="userName" name="userName">
         </div>
-
-
       </form>
       <input id="cancelBtnWeight" style="display: none;" href="/petProfile" type="submit" value="Cancel">
 
@@ -172,13 +170,11 @@
 <script>
   let lastSelected = 'general_info'
   $(document).ready(function () {
-    // Add the 'selected' class to the #generalInfoButton when the page loads
     $("#generalInfoButton").addClass('selected');
 
     $("#generalInfoButton").click(function () {
       $("#general_info").show();
       $(".petMedicalInfo").hide();
-      // Add the 'selected' class to the clicked button and remove it from the other button
       $(this).addClass('selected');
       $("#medicationsButton").removeClass('selected');
       lastSelected = 'general_info'
@@ -187,7 +183,6 @@
     $("#medicationsButton").click(function () {
       $("#general_info").hide();
       $(".petMedicalInfo").show();
-      // Add the 'selected' class to the clicked button and remove it from the other button
       $(this).addClass('selected');
       $("#generalInfoButton").removeClass('selected');
       lastSelected = 'petMedicalInfo'
@@ -195,7 +190,7 @@
 
     $('#editPetBtn').click(function () {
       console.log('Edit button clicked');
-      console.log($('#editPetForm')); // Add this line
+      console.log($('#editPetForm')); 
       $('#editPetForm').css('display', 'block');
       $('#cancelBtn').css('display', 'block');
       $('#petButtons').css('display', 'none');
@@ -205,25 +200,25 @@
 
     // Add click event listener to the "Update Information" button
     $('#updateInfoBtn').click(function (e) {
-      // Show a confirmation dialog
+
       if (!confirm('Are you sure?')) {
-        // If the user clicks "Cancel", prevent the form from being submitted
+
         e.preventDefault();
       }
     });
 
     $('#cancelBtn').click(function (e) {
-      // Show a confirmation dialog
+
       if (!confirm('Are you sure you want to cancel?')) {
-        // If the user clicks "Cancel", prevent the form from being hidden
+
         e.preventDefault();
       } else {
-        // Hide the form and the "Cancel" button
+
         $('#editPetForm').hide();
         $('#cancelBtn').hide();
-        // Show the original elements
+
         $('#petButtons').show();
-        // Check the last selected section and only show that
+
         if (lastSelected === 'general_info') {
           $('#general_info').show();
           $('.petMedicalInfo').hide();
@@ -238,9 +233,7 @@
 
         // Add click event listener to the "Update Information" button
       $('#updateWeightBtn').click(function (e) {
-      // Show a confirmation dialog
       if (!confirm('Are you sure?')) {
-        // If the user clicks "Cancel", prevent the form from being submitted
         e.preventDefault();
       }
     });
@@ -254,18 +247,17 @@
     });
 
     $('#cancelBtnWeight').click(function (e) {
-      // Show a confirmation dialog
       if (!confirm('Are you sure you want to cancel?')) {
-        // If the user clicks "Cancel", prevent the form from being hidden
+
         e.preventDefault();
       } else {
-        // Hide the form and the "Cancel" button
+
         $('#updateWeightInfo').hide();
         $('#cancelBtnWeight').hide();
-        // Show the original elements
+
         $('#petButtons').show();
         $('.update_weight').show();
-        // Check the last selected section and only show that
+
         if (lastSelected === 'general_info') {
           $('#general_info').show();
           $('.petMedicalInfo').hide();

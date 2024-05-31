@@ -1,23 +1,54 @@
+<div class="petCreateInfo">
 
     <h2>Create a Pet</h2>
-<form action="/petCreate" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-    
-    
-    <label for="gender">Gender:</label>
-    <select id="gender" name="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-    </select>
-    <label for="species">Species:</label>
-    <input type="text" id="species" name="species">
-    <label for="breed">Breed:</label>
-    <input type="text" id="breed" name="breed">
-    <label for="birthdate">Birthdate:</label>
-    <input type="date" id="birthdate" name="birthdate">
-    <label for="description">Description:</label>
-    <textarea id="description" name="description"></textarea>
-    
-    <input type="submit" value="Create Pet">
-</form>
+    <form action="/petCreate" method="post" id="createFormPet">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+        <label for="species">Species:</label>
+        <input type="text" id="species" name="species" required>
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" name="breed" required>
+        <label for="birthdate">Birthdate:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+
+
+        <input type="submit" value="Create Pet" id="submitFormPet">
+
+    </form>
+    <a href="/petIndex" class="cancelB">Cancel</a>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.cancelB').click(function (e) {
+
+            if (!confirm('Are you sure you want to cancel?')) {
+
+                e.preventDefault();
+            } else {
+                $('#createFormPet')[0].reset();
+            }
+        });
+
+        $('#submitFormPet').click(function (e) {
+
+            if (!confirm('Are you sure?')) {
+                e.preventDefault();
+            }
+        });
+
+
+    });
+</script>
