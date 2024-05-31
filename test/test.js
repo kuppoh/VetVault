@@ -9,7 +9,6 @@ const request = require('supertest');
 const { promiseUserPool } = require('../config/database');
 //const databaseController = require('../controller/database_controller');
 
-
 describe('login', function () {
   it('should return success if credentials are valid', function (done) {
     request('http://localhost:8080')
