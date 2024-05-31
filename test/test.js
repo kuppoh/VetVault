@@ -12,7 +12,7 @@ const { promiseUserPool } = require('../config/database');
 
 describe('login', function () {
   it('should return success if credentials are valid', function (done) {
-    request('http://localhost:3000')
+    request('http://localhost:8080')
       .post('/login')
       .send({ email: 'reyna@example.com', password: 'reyna123' })
       .expect(302) // expecting HTTP status code 200
@@ -24,7 +24,7 @@ describe('login', function () {
   });
 
   it('should return error if credentials are invalid', function (done) {
-    request('http://localhost:3000')
+    request('http://localhost:8080')
       .post('/login')
       .send({ email: 'rey@example.com', password: 'rey123' })
       .end(function (err, res) {
@@ -45,7 +45,7 @@ describe('register new user', function () {
       phone_number: '1234567890',
     };
 
-    await request('http://localhost:3000')
+    await request('http://localhost:8080')
       .post('/register')
       .send(newUser)
       .expect(302);
@@ -59,14 +59,14 @@ describe('register new user', function () {
 
 describe('logout', function () {
   it('should return success if user is logged out', function (done) {
-    request('http://localhost:3000')
+    request('http://localhost:8080')
       .post('/login')
       .send({ email: 'bob@example.com', password: 'bob123' })
       .expect(302)
       .end(function (err, res) {
         if (err) return done(err);
         assert.strictEqual(res.headers.location, '/dashboard');
-        request('http://localhost:3000')
+        request('http://localhost:8080')
           .post('/logout')
           .expect(302)
           .end(function (err, res) {
@@ -188,7 +188,7 @@ const session = require('supertest-session');
 describe('if name is not provided on update, it should still update with the original name', () => {
   it('should update with the original name', async function () {
     try {
-      const testSession = session('http://localhost:3000');
+      const testSession = session('http://localhost:8080');
 
       let res = await testSession
         .post('/login')
